@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mental Health at SCU — Carlos Ceja</title>
+<meta name="description" content="Research & digital stories highlighting psychological distress at Santa Clara University. A COMM 3 Visual Storytelling Portfolio by Carlos Ceja.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root {
+  /* Colors */
+  --bg-deep: #08080c;
+  --bg-primary: #0c0c14;
+  --bg-card: #12121e;
+  --bg-card-hover: #1a1a2e;
+  --bg-elevated: #16162a;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
+
+  --text-primary: #f0f0f5;
+  --text-secondary: rgba(240, 240, 245, 0.65);
+  --text-tertiary: rgba(240, 240, 245, 0.4);
+
+  --accent-blue: #5b8dee;
+  --accent-purple: #8b5cf6;
+  --accent-pink: #ec4899;
+  --accent-teal: #14b8a6;
+
+  --gradient-hero: linear-gradient(135deg, #5b8dee 0%, #8b5cf6 50%, #ec4899 100%);
+  --gradient-card: linear-gradient(135deg, rgba(91, 141, 238, 0.08), rgba(139, 92, 246, 0.08));
+  --gradient-stat: linear-gradient(180deg, rgba(91, 141, 238, 0.15) 0%, transparent 100%);
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 8rem;
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 800ms;
+
+  /* Shadows */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--border-subtle);
+  --shadow-card-hover: 0 8px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--border-hover);
+  --shadow-glow-blue: 0 0 60px rgba(91, 141, 238, 0.15);
+  --shadow-glow-purple: 0 0 60px rgba(139, 92, 246, 0.15);
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(139, 92, 246, 0.3);
+  color: var(--text-primary);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--accent-blue);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+a:hover {
+  color: var(--accent-purple);
+}
+
+/* ============================================
+   SCROLL ANIMATIONS
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger children */
+.stagger-children .reveal:nth-child(1) { transition-delay: 0ms; }
+.stagger-children .reveal:nth-child(2) { transition-delay: 80ms; }
+.stagger-children .reveal:nth-child(3) { transition-delay: 160ms; }
+.stagger-children .reveal:nth-child(4) { transition-delay: 240ms; }
+.stagger-children .reveal:nth-child(5) { transition-delay: 320ms; }
+
+/* ============================================
+   BACKGROUND EFFECTS
+   ============================================ */
+.bg-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+.bg-gradient-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb-1 {
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(91, 141, 238, 0.08) 0%, transparent 70%);
+}
+
+.orb-2 {
+  width: 500px;
+  height: 500px;
+  bottom: 30%;
+  left: -150px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.06) 0%, transparent 70%);
+}
+
+.orb-3 {
+  width: 400px;
+  height: 400px;
+  bottom: -100px;
+  right: 20%;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.05) 0%, transparent 70%);
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0 var(--space-lg);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.nav.scrolled {
+  background: rgba(8, 8, 12, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.nav-logo {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: opacity var(--duration-fast);
+}
+
+.nav-logo:hover {
+  opacity: 0.7;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  transition: color var(--duration-fast) var(--ease-out);
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gradient-hero);
+  transition: width var(--duration-normal) var(--ease-out);
+}
+
+.nav-links a:hover {
+  color: var(--text-primary);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 8px;
+}
+
+.nav-mobile-toggle span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--text-primary);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-4xl) var(--space-lg);
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(91, 141, 238, 0.12) 0%, rgba(139, 92, 246, 0.06) 40%, transparent 70%);
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to top, var(--bg-deep), transparent);
+}
+
+.hero-line {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(91, 141, 238, 0.2), transparent);
+  width: 100%;
+  animation: pulse-line 4s ease-in-out infinite;
+}
+
+.hero-line:nth-child(1) { top: 25%; animation-delay: 0s; }
+.hero-line:nth-child(2) { top: 50%; animation-delay: 1.3s; }
+.hero-line:nth-child(3) { top: 75%; animation-delay: 2.6s; }
+
+@keyframes pulse-line {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  background: rgba(91, 141, 238, 0.1);
+  border: 1px solid rgba(91, 141, 238, 0.2);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+  margin-bottom: var(--space-xl);
+}
+
+.hero-badge-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent-blue);
+  border-radius: 50%;
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-lg);
+  background: linear-gradient(180deg, var(--text-primary) 0%, rgba(240, 240, 245, 0.6) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2.2vw, 1.375rem);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin: 0 auto var(--space-2xl);
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 36px;
+  background: var(--gradient-hero);
+  color: white;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border-radius: 100px;
+  transition: all var(--duration-normal) var(--ease-out);
+  box-shadow: 0 4px 20px rgba(91, 141, 238, 0.3);
+}
+
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(91, 141, 238, 0.4);
+  color: white;
+}
+
+.hero-cta svg {
+  width: 18px;
+  height: 18px;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.hero-cta:hover svg {
+  transform: translateY(3px);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: var(--space-2xl);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-tertiary);
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.hero-scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--text-tertiary), transparent);
+  animation: scroll-line 2s ease-in-out infinite;
+}
+
+@keyframes scroll-line {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ============================================
+   SECTION LAYOUT
+   ============================================ */
+.section {
+  position: relative;
+  z-index: 1;
+  padding: var(--space-4xl) var(--space-lg);
+}
+
+.section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+  margin-bottom: var(--space-md);
+}
+
+.section-label::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--accent-blue);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-md);
+  color: var(--text-primary);
+}
+
+.section-subtitle {
+  font-size: clamp(1rem, 1.8vw, 1.1875rem);
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 640px;
+}
+
+.section-divider {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-subtle), transparent);
+}
+
+/* ============================================
+   THE STORY SECTION
+   ============================================ */
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
+  align-items: center;
+  margin-top: var(--space-3xl);
+}
+
+.story-text p {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.story-text strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.story-text em {
+  color: var(--accent-blue);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.story-callout {
+  position: relative;
+  padding: var(--space-lg) var(--space-xl);
+  background: var(--gradient-card);
+  border-left: 2px solid var(--accent-purple);
+  border-radius: 0 16px 16px 0;
+  margin-top: var(--space-lg);
+}
+
+.story-callout p {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.story-visual {
+  position: relative;
+}
+
+.story-visual-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: var(--space-2xl);
+  text-align: center;
+  overflow: hidden;
+}
+
+.story-visual-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-hero);
+}
+
+.story-number {
+  font-family: var(--font-display);
+  font-size: 6rem;
+  font-weight: 900;
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: var(--space-sm);
+}
+
+.story-number-label {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xs);
+}
+
+.story-number-detail {
+  font-size: 0.875rem;
+  color: var(--text-tertiary);
+}
+
+/* ============================================
+   RESEARCH / STATS SECTION
+   ============================================ */
+.research-intro {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto var(--space-3xl);
+}
+
+.research-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  margin-top: var(--space-lg);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.research-source:hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.research-source svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  margin-bottom: var(--space-3xl);
+}
+
+.stat-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+  transition: all var(--duration-normal) var(--ease-out);
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: var(--gradient-stat);
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.stat-card:hover {
+  border-color: rgba(91, 141, 238, 0.3);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow-blue);
+}
+
+.stat-card:hover::before {
+  opacity: 1;
+}
+
+.stat-icon {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--space-md);
+  background: rgba(91, 141, 238, 0.1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.stat-number {
+  position: relative;
+  font-family: var(--font-sans);
+  font-size: 2.75rem;
+  font-weight: 800;
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: var(--space-xs);
+}
+
+.stat-label {
+  position: relative;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Why it matters card */
+.why-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: var(--space-2xl) var(--space-xl);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.why-icon {
+  width: 64px;
+  height: 64px;
+  background: rgba(236, 72, 153, 0.1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  flex-shrink: 0;
+}
+
+.why-content h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.why-content p {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   STORYTELLING SECTION
+   ============================================ */
+.stories-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  margin-top: var(--space-3xl);
+}
+
+.story-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.story-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.story-card-header {
+  padding: var(--space-xl) var(--space-xl) 0;
+}
+
+.story-card-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-md);
+}
+
+.type-audio {
+  background: rgba(91, 141, 238, 0.1);
+  color: var(--accent-blue);
+  border: 1px solid rgba(91, 141, 238, 0.2);
+}
+
+.type-visual {
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--accent-purple);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.story-card-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.story-card-desc {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.story-card-embed {
+  padding: var(--space-lg) var(--space-xl) var(--space-xl);
+}
+
+.story-card-embed iframe {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+}
+
+.story-card-action {
+  display: flex;
+  padding: 0 var(--space-xl) var(--space-xl);
+}
+
+.btn-story {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all var(--duration-normal) var(--ease-out);
+  width: 100%;
+  justify-content: center;
+}
+
+.btn-story-audio {
+  background: rgba(91, 141, 238, 0.1);
+  color: var(--accent-blue);
+  border: 1px solid rgba(91, 141, 238, 0.2);
+}
+
+.btn-story-audio:hover {
+  background: rgba(91, 141, 238, 0.2);
+  color: var(--accent-blue);
+}
+
+.btn-story-visual {
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--accent-purple);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.btn-story-visual:hover {
+  background: rgba(139, 92, 246, 0.2);
+  color: var(--accent-purple);
+}
+
+.btn-story svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ============================================
+   INTERVIEW SECTION
+   ============================================ */
+.interview-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 24px;
+  padding: var(--space-2xl) var(--space-xl);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+  margin-top: var(--space-3xl);
+}
+
+.interview-content h3 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.interview-content p {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.interview-visual {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  align-items: center;
+}
+
+.interview-quote {
+  position: relative;
+  padding: var(--space-lg);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.06), rgba(91, 141, 238, 0.06));
+  border-radius: 16px;
+  border: 1px solid var(--border-subtle);
+}
+
+.interview-quote::before {
+  content: '\201C';
+  font-family: var(--font-display);
+  font-size: 4rem;
+  position: absolute;
+  top: -10px;
+  left: 16px;
+  color: var(--accent-purple);
+  opacity: 0.4;
+  line-height: 1;
+}
+
+.interview-quote p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  font-style: italic;
+  padding-top: var(--space-sm);
+}
+
+.interview-quote cite {
+  display: block;
+  margin-top: var(--space-sm);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--accent-purple);
+}
+
+/* ============================================
+   ABOUT SECTION
+   ============================================ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
+  align-items: center;
+  margin-top: var(--space-3xl);
+}
+
+.about-text h3 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.about-text p {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: var(--space-lg);
+}
+
+.about-tag {
+  padding: 8px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 100px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.about-tag:hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.about-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.about-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 24px;
+  padding: var(--space-2xl);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.about-avatar {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto var(--space-md);
+  background: var(--gradient-hero);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: white;
+}
+
+.about-card h4 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.about-card p {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.about-card-divider {
+  width: 48px;
+  height: 2px;
+  background: var(--gradient-hero);
+  margin: var(--space-md) auto;
+  border-radius: 1px;
+}
+
+.about-detail {
+  font-size: 0.8125rem;
+  color: var(--text-tertiary);
+  line-height: 1.8;
+}
+
+/* ============================================
+   WORKS CITED
+   ============================================ */
+.works-cited-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 24px;
+  padding: var(--space-2xl);
+  text-align: center;
+  margin-top: var(--space-xl);
+}
+
+.works-cited-card p {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: var(--gradient-hero);
+  color: white;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: all var(--duration-normal) var(--ease-out);
+  box-shadow: 0 4px 20px rgba(91, 141, 238, 0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(91, 141, 238, 0.35);
+  color: white;
+}
+
+.btn-primary svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  position: relative;
+  z-index: 1;
+  padding: var(--space-3xl) var(--space-lg) var(--space-xl);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.crisis-banner {
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.08), rgba(91, 141, 238, 0.08));
+  border: 1px solid rgba(20, 184, 166, 0.2);
+  border-radius: 16px;
+  padding: var(--space-lg) var(--space-xl);
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.crisis-banner p {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.crisis-banner strong {
+  color: var(--accent-teal);
+  font-weight: 600;
+}
+
+.crisis-banner a {
+  color: var(--accent-teal);
+  font-weight: 600;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-credit {
+  font-size: 0.8125rem;
+  color: var(--text-tertiary);
+}
+
+.footer-contact a {
+  font-size: 0.8125rem;
+  color: var(--text-tertiary);
+  transition: color var(--duration-fast);
+}
+
+.footer-contact a:hover {
+  color: var(--accent-blue);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 900px) {
+  .story-grid,
+  .stories-grid,
+  .interview-card,
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-xl);
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .why-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .why-icon {
+    margin: 0 auto;
+  }
+
+  .about-visual {
+    order: -1;
+  }
+
+  /* Interview highlights — stack to single column */
+  .interview-highlights > div[style] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Photo gallery — stack to 2 columns, no span */
+  .photo-gallery {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .photo-gallery > div[style*="span"] {
+    grid-column: span 1 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: var(--space-3xl) var(--space-sm);
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-mobile-toggle {
+    display: flex;
+  }
+
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: rgba(8, 8, 12, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border-subtle);
+    gap: var(--space-md);
+  }
+
+  .hero {
+    padding: var(--space-3xl) var(--space-sm);
+  }
+
+  .stat-number {
+    font-size: 2.25rem;
+  }
+
+  .story-number {
+    font-size: 4rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: var(--space-sm);
+    text-align: center;
+  }
+
+  /* Photo gallery — single column on phone */
+  .photo-gallery {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Gallery images — uniform height on small screens */
+  .photo-gallery img {
+    height: 220px !important;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-line,
+  .hero-scroll-line,
+  .hero-badge-dot {
+    animation: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Background Effects -->
+<div class="bg-grain"></div>
+<div class="bg-gradient-orb orb-1"></div>
+<div class="bg-gradient-orb orb-2"></div>
+<div class="bg-gradient-orb orb-3"></div>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">Carlos Ceja</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#story">Story</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#storytelling">Storytelling</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#works-cited">Sources</a></li>
+    </ul>
+    <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-line"></div>
+    <div class="hero-line"></div>
+    <div class="hero-line"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge reveal">
+      <span class="hero-badge-dot"></span>
+      COMM 3 — Visual Storytelling Portfolio
+    </div>
+    <h1 class="hero-title reveal">Mental Health at Santa Clara University</h1>
+    <p class="hero-subtitle reveal">
+      Research and digital stories highlighting psychological distress at Santa Clara University.
+      Speaking truth about the mental health climate through storytelling and data.
+    </p>
+    <a href="#story" class="hero-cta reveal">
+      Explore the Project
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </a>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- The Story -->
+<div class="section-divider"></div>
+<section class="section" id="story">
+  <div class="section-inner">
+    <div class="section-label reveal">The Story</div>
+    <h2 class="section-title reveal">Three Lives Lost.<br>One Community Changed.</h2>
+    <p class="section-subtitle reveal">
+      A deep investigation into student mental health at SCU after three students tragically lost their lives in fall quarter 2021.
+    </p>
+
+    <div class="story-grid">
+      <div class="story-text">
+        <p class="reveal">My work involves speaking to a former SCU journalism senior lecturer about the <strong>mental health climate at SCU</strong> after three student deaths, including two suicides, in fall quarter 2021.</p>
+        <p class="reveal">To tell this story, we conducted research, produced an audio story, and curated a visual story.</p>
+        <p class="reveal">As a result of these challenges at the university, we wanted to highlight the significant event where three students tragically lost their lives. This event sparked a movement by students demanding the university improve the <strong>Counseling and Psychological Services (CAPS)</strong> program.</p>
+        <p class="reveal">The students were successful, which led to the University allocating millions to improve CAPS.</p>
+
+        <div class="reveal" style="margin: var(--space-lg) 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-subtle);">
+          <img src="images/scu_protest.jpg" alt="SCU students rally for better mental health resources" style="width: 100%; height: auto; display: block;">
+          <div style="padding: 12px 16px; background: var(--bg-card); border-top: 1px solid var(--border-subtle);">
+            <span style="font-size: 0.75rem; color: var(--text-tertiary); letter-spacing: 0.03em;">Students gather at SCU to demand increased funding for Counseling and Psychological Services.</span>
+          </div>
+        </div>
+
+        <div class="story-callout reveal">
+          <p>Through this, we hope to <em>spread awareness</em> of this issue and <em>encourage current students</em> suffering from psychological distress to seek help.</p>
+        </div>
+      </div>
+
+      <div class="story-visual reveal-scale">
+        <div class="story-visual-card">
+          <div class="story-number" id="counterDeaths">3</div>
+          <div class="story-number-label">Student Deaths</div>
+          <div class="story-number-detail">Fall quarter, 2021</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Research -->
+<div class="section-divider"></div>
+<section class="section" id="research">
+  <div class="section-inner">
+    <div class="section-label reveal">Research</div>
+    <h2 class="section-title reveal" style="text-align:center; margin-left:auto; margin-right:auto;">Mental Distress in<br>Higher Education</h2>
+
+    <div class="research-intro reveal">
+      <p class="section-subtitle" style="margin: var(--space-md) auto var(--space-lg); text-align:center;">
+        To understand the problem at SCU, we leveraged existing research to understand mental health at a larger scale. In 2021, researchers at three Belgian universities surveyed 23,307 higher education students on psychological distress one year into the COVID-19 pandemic.
+      </p>
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8308017/" target="_blank" rel="noopener noreferrer" class="research-source">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Read the Study (PMC)
+      </a>
+    </div>
+
+    <div class="stats-grid stagger-children">
+      <div class="stat-card reveal">
+        <div class="stat-icon">🧠</div>
+        <div class="stat-number" data-target="50.6" data-suffix="%">0%</div>
+        <div class="stat-label">presented anxiety symptoms</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-icon">💔</div>
+        <div class="stat-number" data-target="55.1" data-suffix="%">0%</div>
+        <div class="stat-label">presented depressive symptoms</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-icon">⚠️</div>
+        <div class="stat-number" data-target="20.8" data-suffix="%">0%</div>
+        <div class="stat-label">reported suicidal ideations</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-icon">🤝</div>
+        <div class="stat-number" data-target="33.3" data-suffix="%">0%</div>
+        <div class="stat-label">had or intended to consult a psychologist</div>
+      </div>
+    </div>
+
+    <div class="why-card reveal">
+      <div class="why-icon">❗</div>
+      <div class="why-content">
+        <h3>Why Does This Matter?</h3>
+        <p>Despite alarming rates of mental distress symptoms, two-thirds of students surveyed had no intention of seeking professional help. This leaves the vast majority of affected students vulnerable to anxiety, depression, and suicidal ideation — without psychological support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Storytelling -->
+<div class="section-divider"></div>
+<section class="section" id="storytelling">
+  <div class="section-inner">
+    <div class="section-label reveal">Storytelling</div>
+    <h2 class="section-title reveal">Bringing Stories to Life</h2>
+    <p class="section-subtitle reveal">
+      We produced compelling audio and visual stories that provide our audience a glimpse into the climate at Santa Clara University and the impact these events had on the community.
+    </p>
+
+    <div class="stories-grid">
+      <!-- Audio Story -->
+      <div class="story-card reveal-left">
+        <div class="story-card-header">
+          <div class="story-card-type type-audio">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            Audio Story
+          </div>
+          <h3 class="story-card-title">The Climate at SCU</h3>
+          <p class="story-card-desc">Hear the heartbreaking climate that existed on campus. How Silicon Valley pressures and academic stress contributed to a mental health crisis among students.</p>
+        </div>
+        <div class="story-card-embed">
+          <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1979866659&color=%235b8dee&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false"></iframe>
+        </div>
+        <div class="story-card-action">
+          <a href="https://soundcloud.com/carlos-ceja-963191952/comm-3-audio-story" target="_blank" rel="noopener noreferrer" class="btn-story btn-story-audio">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Listen on SoundCloud (5:31)
+          </a>
+        </div>
+      </div>
+
+      <!-- Visual Story -->
+      <div class="story-card reveal-right">
+        <div class="story-card-header">
+          <div class="story-card-type type-visual">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Visual Story
+          </div>
+          <h3 class="story-card-title">Santa Clara Suicides</h3>
+          <p class="story-card-desc">This visual story uses original photography to symbolize what took place and convey the emotions and experiences of students affected by the mental health crisis.</p>
+        </div>
+        <div class="story-card-embed">
+          <iframe src="https://drive.google.com/file/d/1qLPEHKLhWckl-4RywBeTO1nzYOm-O4Pt/preview" width="100%" height="280" allow="autoplay" style="border:0;"></iframe>
+        </div>
+        <div class="story-card-action">
+          <a href="https://drive.google.com/file/d/1qLPEHKLhWckl-4RywBeTO1nzYOm-O4Pt/view" target="_blank" rel="noopener noreferrer" class="btn-story btn-story-visual">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View Visual Story (PDF, 18 pages)
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interview Section -->
+    <div class="interview-card reveal">
+      <div class="interview-content">
+        <h3>The Interview</h3>
+        <p>We landed an interview with former SCU journalism senior lecturer <strong style="color:var(--text-primary)">Barbara Kelley</strong>, who taught at Santa Clara for 27 years.</p>
+        <p>Her firsthand accounts of the climate on campus were a significant part of our audio story. She witnessed the trauma ripple through her classrooms as students struggled to process three deaths in a single quarter — all while readjusting to campus life after the pandemic.</p>
+      </div>
+      <div class="interview-visual">
+        <div class="interview-quote">
+          <p>Bad things happen, and you can't sweep them under the rug, or you can't use euphemisms.</p>
+          <cite>— Barbara Kelley, in an interview, Oct. 18, 2024</cite>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interview Photo -->
+    <div class="reveal" style="margin-top: var(--space-xl); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-subtle);">
+      <img src="images/interview_kelley.jpg" alt="Barbara Kelley and Carlos Ceja interview alongside news coverage of the SCU student deaths" style="width: 100%; height: auto; display: block;">
+      <div style="padding: 12px 16px; background: var(--bg-card); border-top: 1px solid var(--border-subtle);">
+        <span style="font-size: 0.75rem; color: var(--text-tertiary); letter-spacing: 0.03em;">Barbara Kelley (top) and Carlos Ceja (bottom) alongside local news coverage of the student deaths at SCU.</span>
+      </div>
+    </div>
+
+    <!-- Interview Highlights -->
+    <div class="interview-highlights" style="margin-top: var(--space-xl);">
+      <h3 class="reveal" style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin-bottom: var(--space-lg); text-align: center;">From the Interview</h3>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg);">
+
+        <div class="interview-quote reveal" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.06), rgba(139, 92, 246, 0.06)); border: 1px solid var(--border-subtle); border-radius: 16px; padding: var(--space-lg);">
+          <p style="font-size: 1rem; line-height: 1.7; color: var(--text-secondary); font-style: italic; padding-top: var(--space-sm);">The students were really traumatized. ... There were several students who didn't want to come to class after they found out, because they were so upset.</p>
+          <cite style="display: block; margin-top: var(--space-sm); font-size: 0.875rem; font-style: normal; font-weight: 600; color: var(--accent-purple);">— Barbara Kelley, on the first death</cite>
+        </div>
+
+        <div class="interview-quote reveal" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.06), rgba(139, 92, 246, 0.06)); border: 1px solid var(--border-subtle); border-radius: 16px; padding: var(--space-lg);">
+          <p style="font-size: 1rem; line-height: 1.7; color: var(--text-secondary); font-style: italic; padding-top: var(--space-sm);">One of the students said, you know, I just don't see myself in the future. And another student said, Yeah, neither do I.</p>
+          <cite style="display: block; margin-top: var(--space-sm); font-size: 0.875rem; font-style: normal; font-weight: 600; color: var(--accent-purple);">— Barbara Kelley, on a classroom discussion after the deaths</cite>
+        </div>
+
+        <div class="interview-quote reveal" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.06), rgba(139, 92, 246, 0.06)); border: 1px solid var(--border-subtle); border-radius: 16px; padding: var(--space-lg);">
+          <p style="font-size: 1rem; line-height: 1.7; color: var(--text-secondary); font-style: italic; padding-top: var(--space-sm);">Students have to just push themselves as far as they can, worry about their grades all the time. ... It's been kind of a treadmill.</p>
+          <cite style="display: block; margin-top: var(--space-sm); font-size: 0.875rem; font-style: normal; font-weight: 600; color: var(--accent-purple);">— Barbara Kelley, on the culture of pressure at SCU</cite>
+        </div>
+
+        <div class="interview-quote reveal" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.06), rgba(139, 92, 246, 0.06)); border: 1px solid var(--border-subtle); border-radius: 16px; padding: var(--space-lg);">
+          <p style="font-size: 1rem; line-height: 1.7; color: var(--text-secondary); font-style: italic; padding-top: var(--space-sm);">It was the biggest [rally] I've ever seen since I've taught at Santa Clara. ... What they really wanted was more money for CAPS.</p>
+          <cite style="display: block; margin-top: var(--space-sm); font-size: 0.875rem; font-style: normal; font-weight: 600; color: var(--accent-purple);">— Barbara Kelley, on the student-led demonstration</cite>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Visual Story Gallery -->
+<div class="section-divider"></div>
+<section class="section" id="visual-gallery">
+  <div class="section-inner">
+    <div class="section-label reveal">Visual Story</div>
+    <h2 class="section-title reveal">Original Photography</h2>
+    <p class="section-subtitle reveal">
+      Images from the visual story use original photography to represent the locations and emotions tied to the events of fall 2021. Created by Carlos Ceja and Charlie Gray.
+    </p>
+
+    <!-- Artist Statement -->
+    <div class="why-card reveal" style="margin-top: var(--space-xl); margin-bottom: var(--space-xl);">
+      <div class="why-icon">🎨</div>
+      <div class="why-content">
+        <h3>Artist Statement</h3>
+        <p>In this visual piece, we intend to represent the impact of these deaths through the scenes where they had impact or occurred — allowing our audience to imagine and reflect on these events. As SCU students creating this story, we empathize with the struggles these Broncos faced. Knowing how the Silicon Valley hustle culture combined with a rigorous curriculum can cause burnout, we hope to represent this story thoughtfully through the eyes of fellow Broncos, for Broncos.</p>
+      </div>
+    </div>
+
+    <div class="photo-gallery stagger-children" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin-top: var(--space-xl);">
+      <div class="reveal" style="grid-column: span 2;">
+        <div style="position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-subtle);">
+          <img src="images/cowell_center.jpg" alt="Cowell Center at SCU with wellness resources" style="width: 100%; height: 320px; object-fit: cover; display: block;">
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 20px; background: linear-gradient(to top, rgba(8,8,12,0.9), transparent);">
+            <span style="font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.05em; text-transform: uppercase;">Cowell Center</span>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div style="position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-subtle);">
+          <img src="images/slide_10_img_07.jpg" alt="Swig Hall" style="width: 100%; height: 320px; object-fit: cover; display: block;">
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 20px; background: linear-gradient(to top, rgba(8,8,12,0.9), transparent);">
+            <span style="font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.05em; text-transform: uppercase;">Swig Hall</span>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div style="position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-subtle);">
+          <img src="images/slide_06_img_02.jpg" alt="Near Caltrain" style="width: 100%; height: 280px; object-fit: cover; display: block;">
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 20px; background: linear-gradient(to top, rgba(8,8,12,0.9), transparent);">
+            <span style="font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.05em; text-transform: uppercase;">Near Caltrain</span>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div style="position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-subtle);">
+          <img src="images/underpass_bw.jpg" alt="CA-87 underpass" style="width: 100%; height: 280px; object-fit: cover; display: block;">
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 20px; background: linear-gradient(to top, rgba(8,8,12,0.9), transparent);">
+            <span style="font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.05em; text-transform: uppercase;">CA-87 Underpass</span>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div style="position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-subtle);">
+          <img src="images/campus_bewellbroncos.jpg" alt="Be Well Broncos sign on SCU campus" style="width: 100%; height: 280px; object-fit: cover; display: block;">
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 20px; background: linear-gradient(to top, rgba(8,8,12,0.9), transparent);">
+            <span style="font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.05em; text-transform: uppercase;">Be Well, Broncos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<div class="section-divider"></div>
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="section-label reveal">About</div>
+    <h2 class="section-title reveal">About the Author</h2>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="reveal">This portfolio was created as part of COMM 3: Visual Storytelling at Santa Clara University. Through research, interviews, audio production, and visual storytelling, I aimed to shine a light on an issue that profoundly affected our campus community.</p>
+        <p class="reveal">My goal was to create work that not only fulfills the academic requirements but serves as a meaningful contribution to the ongoing conversation about student mental health in higher education.</p>
+        <div class="about-tags reveal">
+          <span class="about-tag">Communications Major</span>
+          <span class="about-tag">SCU '26</span>
+          <span class="about-tag">US Army Veteran</span>
+          <span class="about-tag">Tech Worker</span>
+          <span class="about-tag">First-Generation Mexican American</span>
+        </div>
+      </div>
+
+      <div class="about-visual reveal-scale">
+        <div class="about-card">
+          <img src="images/carlos_headshot.jpg" alt="Carlos Ceja" style="width: 96px; height: 96px; border-radius: 50%; object-fit: cover; object-position: center center;margin: 0 auto var(--space-sm); display: block; border: 3px solid var(--accent-blue);">
+          <h4>Carlos Ceja</h4>
+          <p>Communications @ Santa Clara University</p>
+          <div class="about-card-divider"></div>
+          <div class="about-detail">
+            US Army Veteran<br>
+            Tech Worker<br>
+            First-Generation Mexican American
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Works Cited -->
+<div class="section-divider"></div>
+<section class="section" id="works-cited">
+  <div class="section-inner">
+    <div class="section-label reveal">Sources</div>
+    <h2 class="section-title reveal">Works Cited</h2>
+    <p class="section-subtitle reveal">All sources used in the research and production of this portfolio.</p>
+
+    <div class="works-cited-card reveal">
+      <p>The works cited document contains all research sources, interview references, and media attributions used throughout this portfolio project.</p>
+      <a href="https://drive.google.com/file/d/1K4uBRGnbL3RXypXTcAz44qkFuCsdiLQz/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        View Works Cited PDF
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="crisis-banner reveal">
+      <p>
+        <strong>If you or someone you know is struggling with mental health</strong>, please reach out.
+        You are not alone. Contact the <strong>988 Suicide & Crisis Lifeline</strong> by calling or texting
+        <a href="tel:988">988</a>, available 24/7.
+      </p>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-credit">
+        Created by Carlos Ceja for COMM 3 at Santa Clara University
+      </div>
+      <div class="footer-contact">
+        <a href="mailto:cceja@scu.edu">cceja@scu.edu</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+(function() {
+  'use strict';
+
+  // ============================================
+  // Intersection Observer for scroll animations
+  // ============================================
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px 0px -80px 0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+
+        // Counter animation for stat numbers
+        if (entry.target.classList.contains('stat-card')) {
+          const numEl = entry.target.querySelector('.stat-number');
+          if (numEl && numEl.dataset.target && !numEl.dataset.counted) {
+            numEl.dataset.counted = 'true';
+            animateCounter(numEl);
+          }
+        }
+
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+    observer.observe(el);
+  });
+
+  // ============================================
+  // Animated counter
+  // ============================================
+  function animateCounter(el) {
+    const target = parseFloat(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const duration = 2000;
+    const startTime = performance.now();
+
+    function easeOutExpo(t) {
+      return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+    }
+
+    function update(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = easeOutExpo(progress);
+      const current = easedProgress * target;
+
+      if (target % 1 !== 0) {
+        el.textContent = current.toFixed(1) + suffix;
+      } else {
+        el.textContent = Math.round(current) + suffix;
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  // ============================================
+  // Navigation scroll effect
+  // ============================================
+  const nav = document.getElementById('nav');
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+
+    if (scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+
+    lastScroll = scrollY;
+  }, { passive: true });
+
+  // ============================================
+  // Mobile navigation toggle
+  // ============================================
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  // Close mobile nav on link click
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+    });
+  });
+
+  // ============================================
+  // Smooth scroll for anchor links
+  // ============================================
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ============================================
+  // Parallax for background orbs
+  // ============================================
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const orbs = document.querySelectorAll('.bg-gradient-orb');
+        orbs.forEach((orb, i) => {
+          const speed = 0.03 + (i * 0.015);
+          orb.style.transform = `translateY(${scrollY * speed}px)`;
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+})();
+</script>
+
+</body>
+</html>
