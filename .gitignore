@@ -1,0 +1,23 @@
+# --- Local agent notes (never publish) ---
+CLAUDE.md
+
+# --- Private / course material (never publish) ---
+BUG_REPORT.md
+/COMM 3/
+/Portfolio Redesign/
+index.backup-before-editorial-redesign.html
+*.backup.html
+
+# --- Unused assets ---
+/images/_contact_sheet.jpg
+/icon-anxiety.svg
+/icon-artist.svg
+/icon-depression.svg
+/icon-importance.svg
+/icon-support.svg
+/icon-warning.svg
+
+# --- OS / scratch ---
+.DS_Store
+**/.DS_Store
+/tmp/
