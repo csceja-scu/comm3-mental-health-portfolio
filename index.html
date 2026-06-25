@@ -204,6 +204,7 @@
 
     .readable {
       max-width: var(--read);
+      color: var(--stone);
     }
     .readable p { color: var(--stone); }
 
@@ -550,6 +551,7 @@
     }
 
     .timeline-body {
+      grid-column: 2;
       padding-bottom: var(--sp-1);
     }
 
@@ -756,6 +758,13 @@
     /* Portrait aspect override */
     .figure-card.portrait img {
       aspect-ratio: 4 / 5;
+    }
+
+    /* Interview composite is a landscape screen-share — show the whole frame
+       at its true ratio so neither face is cropped. */
+    .figure-card.interview-shot img {
+      aspect-ratio: 800 / 492;
+      object-fit: contain;
     }
 
     .figure-card figcaption {
@@ -1369,7 +1378,7 @@
           <p class="kicker reveal">Primary reporting</p>
           <h2 id="interview-title" class="reveal">The interview made the climate real.</h2>
           <p class="reveal" style="color: var(--stone);">Barbara Kelley taught journalism at Santa Clara for 27 years. Her interview gave this project a direct account of the fear, grief, and frustration students carried after the deaths.</p>
-          <figure class="figure-card portrait mt-3 reveal" style="margin-top: var(--sp-4);">
+          <figure class="figure-card interview-shot mt-3 reveal" style="margin-top: var(--sp-4);">
             <picture>
               <source srcset="images/optimized/interview_kelley.webp" type="image/webp">
               <img src="images/interview_kelley.jpg" width="800" height="492" loading="lazy" decoding="async" alt="Barbara Kelley and Carlos Ceja in a remote interview alongside news coverage of SCU student deaths.">
