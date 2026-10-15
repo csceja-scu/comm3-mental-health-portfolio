@@ -12,11 +12,13 @@
   <meta property="og:url" content="https://csceja-scu.github.io/comm3-mental-health-portfolio/">
   <!-- Absolute URL so social-card scrapers resolve the image regardless of the page path. -->
   <meta property="og:image" content="https://csceja-scu.github.io/comm3-mental-health-portfolio/images/scu_protest.jpg">
+  <meta property="og:image:alt" content="Students gathered at SCU to demand funding for Counseling and Psychological Services.">
+  <link rel="canonical" href="https://csceja-scu.github.io/comm3-mental-health-portfolio/">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=4">
+  <link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
   <div class="progress" aria-hidden="true"></div>
@@ -39,7 +41,7 @@
       <p><strong>Content warning:</strong> This portfolio discusses suicide, death, self-harm, grief, and campus mental-health crisis.</p>
       <div class="warning-actions">
         <a class="btn btn--ghost btn--sm" href="#story">Scroll to the story<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></a>
-        <a class="btn btn--care btn--sm" href="tel:988"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call or text 988</a>
+        <span class="crisis-actions"><a class="btn btn--care btn--md" href="tel:988"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call</a> <span class="crisis-or">or</span> <a class="btn btn--care btn--md" href="sms:988">text 988</a></span>
       </div>
     </div>
   </div>
@@ -47,7 +49,7 @@
   <!-- ============================================================
        HEADER / NAV
   ============================================================ -->
-  <header class="site-header" role="banner">
+  <header class="site-header">
     <nav class="nav" aria-label="Main navigation">
       <a class="brand" href="#top">Carlos Ceja · COMM 3</a>
       <div class="nav-links">
@@ -67,8 +69,8 @@
     ============================================================ -->
     <section class="hero" id="top" aria-labelledby="page-title">
       <!-- Background: protest photo heavily darkened into void -->
-      <div class="hero-bg" aria-hidden="true">
-        <video class="hero-video" data-ambient muted loop playsinline autoplay preload="auto" poster="media/protest-poster.jpg">
+      <div class="hero-bg">
+        <video class="hero-video" data-ambient muted loop playsinline preload="metadata" aria-hidden="true" poster="media/protest-poster.jpg">
           <source src="media/protest.mp4" type="video/mp4">
         </video>
       </div>
@@ -132,13 +134,14 @@
     ============================================================ -->
     <section class="signature-section" aria-labelledby="signature-label">
       <div class="signature-inner">
-        <span class="ember-mark" aria-hidden="true"></span>
-        <p class="kicker kicker--ember" id="signature-label">From the classroom &nbsp;—&nbsp; After the deaths</p>
+                <p class="kicker kicker--ember" id="signature-label">From the classroom &nbsp;—&nbsp; After the deaths</p>
+        <figure class="signature-figure">
         <blockquote class="signature-quote" cite="#interview">
           <p>"I just don't see myself in the future."
           <span class="line-two">"Yeah, neither do I."</span></p>
         </blockquote>
-        <p class="signature-attribution mt-6">— Two students in Barbara Kelley's classroom, following the fall 2021 deaths at Santa Clara University</p>
+        <figcaption class="signature-attribution">— Two students in Barbara Kelley's classroom, following the fall 2021 deaths at Santa Clara University</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -151,24 +154,24 @@
         <p class="kicker reveal">The evidence</p>
         <h2 id="evidence-title" class="reveal">The hidden weight of a generation.</h2>
         <p class="readable reveal">While these deaths were individual tragedies, their impact was amplified by larger patterns in higher education: distress, academic pressure, and a gap between need and support-seeking. To frame the problem, this portfolio references a 2021 study of 23,307 higher-education students one year into the COVID-19 pandemic.</p>
-        <div class="stat-grid reveal-group" aria-label="Research statistics">
-          <article class="stat-card">
+        <ul class="stat-grid reveal-group" role="list" aria-label="Research statistics">
+          <li class="stat-card">
             <span class="stat-number">50.6%</span>
             <p>Presented anxiety symptoms</p>
-          </article>
-          <article class="stat-card">
+          </li>
+          <li class="stat-card">
             <span class="stat-number">55.1%</span>
             <p>Presented depressive symptoms</p>
-          </article>
-          <article class="stat-card stat-card--heavy">
+          </li>
+          <li class="stat-card">
             <span class="stat-number">20.8%</span>
             <p>Reported suicidal ideation</p>
-          </article>
-          <article class="stat-card">
+          </li>
+          <li class="stat-card">
             <span class="stat-number">33.3%</span>
             <p>Had consulted or intended to consult a psychologist</p>
-          </article>
-        </div>
+          </li>
+        </ul>
         <p class="small mt-4">Source: Schmits et al. (2021), <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8308017/" target="_blank" rel="noopener noreferrer">Psychological Distress among Students in Higher Education</a>.</p>
       </div>
     </section>
@@ -182,10 +185,10 @@
         <div>
           <p class="kicker reveal">Primary reporting</p>
           <h2 id="interview-title" class="reveal">The interview made the climate real.</h2>
-          <p class="reveal" style="color: var(--stone);">Barbara Kelley taught journalism at Santa Clara for 27 years. Her interview gave this project a direct account of the fear, grief, and frustration students carried after the deaths.</p>
-          <figure class="kb reveal figure-card interview-shot mt-3 reveal" style="margin-top: var(--sp-4);">
+          <p class="reveal text-secondary">Barbara Kelley taught journalism at Santa Clara for 27 years. Her interview gave this project a direct account of the fear, grief, and frustration students carried after the deaths.</p>
+          <figure class="figure-card interview-shot mt-4 reveal">
             <picture>
-              <source srcset="images/optimized/interview_kelley.webp" type="image/webp">
+              <source type="image/webp" srcset="images/optimized/interview_kelley-480.webp 480w, images/optimized/interview_kelley-800.webp 800w" sizes="(max-width: 900px) calc(100vw - 32px), 480px">
               <img src="images/interview_kelley.jpg" width="800" height="492" loading="lazy" decoding="async" alt="Barbara Kelley and Carlos Ceja in a remote interview alongside news coverage of SCU student deaths.">
             </picture>
             <figcaption>Barbara Kelley and Carlos Ceja during the reporting process, alongside local news coverage of the SCU student deaths.</figcaption>
@@ -196,13 +199,13 @@
           <h3>Audio story: The Climate at SCU</h3>
           <p class="small mt-2">5:31 &nbsp;·&nbsp; Interview with Barbara Kelley &nbsp;·&nbsp; Produced for COMM 3</p>
           <div class="audio-frame" id="soundcloud-player">
-            <iframe id="sc-iframe" title="SoundCloud audio story: COMM 3 Audio Story" scrolling="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1979866659&color=%23862633&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false"></iframe>
+            <iframe id="sc-iframe" title="SoundCloud audio story: COMM 3 Audio Story" scrolling="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1979866659&color=%23862633&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false"></iframe>
           </div>
-          <button class="btn btn--secondary btn--md listen-indicator" type="button" hidden data-listen aria-pressed="false"><span class="dot" aria-hidden="true"></span><svg class="icon icon-play" aria-hidden="true" focusable="false"><use href="#i-play"/></svg><svg class="icon icon-pause" aria-hidden="true" focusable="false"><use href="#i-pause"/></svg><span data-listen-label>Listen — audio starts when you interact</span></button>
           <p class="small mt-3"><a href="https://soundcloud.com/carlos-ceja-963191952/comm-3-audio-story" target="_blank" rel="noopener noreferrer">Open the audio story on SoundCloud</a></p>
 
+          <!-- TODO(transcript): add a complete verified transcript of the 5:31 audio (speech + meaningful non-speech) here or link to one. Needs the author's transcript; WCAG 1.2.1. Do not edit the excerpts below. -->
           <details>
-            <summary>Read selected interview excerpts</summary>
+            <summary>Read selected interview excerpts<span class="summary-icon" aria-hidden="true"></span></summary>
             <div class="details-body">
               <p><strong>Note:</strong> These are selected excerpts available in the existing portfolio.</p>
               <p>"The students were really traumatized. ... There were several students who didn't want to come to class after they found out, because they were so upset."</p>
@@ -240,8 +243,8 @@
     <!-- ============================================================
          VISUAL STORY
     ============================================================ -->
-    <div class="video-band " aria-hidden="true">
-      <video class="ambient-video" data-ambient muted loop playsinline preload="none" poster="media/cowell-poster.jpg"><source src="media/cowell.mp4" type="video/mp4"></video>
+    <div class="video-band">
+      <video class="ambient-video" aria-hidden="true" data-ambient muted loop playsinline preload="none" poster="media/cowell-poster.jpg"><source src="media/cowell.mp4" type="video/mp4"></video>
       <p class="band-caption">Cowell Center</p>
     </div>
 
@@ -252,38 +255,38 @@
         <h2 id="visual-title" class="reveal">Place, pressure, and memory.</h2>
         <p class="readable reveal">The original visual project by Carlos Ceja and Charlie Gray used campus and nearby locations to help viewers imagine and reflect on what happened. This web version presents key moments natively, with the full PDF preserved as the archive artifact.</p>
 
-        <div class="photo-grid" aria-label="Visual story photo essay">
-          <figure class="kb reveal figure-card wide">
+        <div class="photo-grid" role="group" aria-label="Visual story photo essay">
+          <figure class="kb figure-card wide">
             <picture>
-              <source srcset="images/optimized/cowell_center.webp" type="image/webp">
+              <source type="image/webp" srcset="images/optimized/cowell_center-480.webp 480w, images/optimized/cowell_center-800.webp 800w" sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 900px) 50vw, 640px">
               <img src="images/cowell_center.jpg" width="800" height="450" loading="lazy" decoding="async" alt="Exterior of the Cowell Center, where SCU wellness and counseling resources are located.">
             </picture>
             <figcaption>Cowell Center / CAPS — the institutional focus of student demands for stronger mental-health resources.</figcaption>
           </figure>
           <figure class="figure-card narrow portrait">
             <picture>
-              <source srcset="images/optimized/slide_06_img_02.webp" type="image/webp">
+              <source type="image/webp" srcset="images/optimized/slide_06_img_02-480.webp 480w, images/optimized/slide_06_img_02-800.webp 800w" sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 900px) 50vw, 460px">
               <img src="images/slide_06_img_02.jpg" width="800" height="1422" loading="lazy" decoding="async" alt="Night view near Caltrain tracks, used as part of the visual story's reflection on place and tragedy.">
             </picture>
             <figcaption>Near Caltrain — one of the locations represented in the visual story.</figcaption>
           </figure>
           <figure class="figure-card third">
             <picture>
-              <source srcset="images/optimized/underpass_bw.webp" type="image/webp">
+              <source type="image/webp" srcset="images/optimized/underpass_bw-480.webp 480w, images/optimized/underpass_bw-800.webp 800w" sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 900px) 50vw, 370px">
               <img src="images/underpass_bw.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Black and white image of an underpass used to represent the CA-87 location in the visual story.">
             </picture>
             <figcaption>CA-87 underpass — rendered in black and white to keep the focus on place and reflection.</figcaption>
           </figure>
-          <figure class="kb reveal figure-card third">
+          <figure class="kb figure-card third">
             <picture>
-              <source srcset="images/optimized/slide_09_img_06.webp" type="image/webp">
+              <source type="image/webp" srcset="images/optimized/slide_09_img_06-480.webp 480w, images/optimized/slide_09_img_06-800.webp 800w" sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 900px) 50vw, 370px">
               <img src="images/slide_09_img_06.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Low-angle night photograph of Swig Hall at Santa Clara University.">
             </picture>
             <figcaption>Swig Hall — a campus landmark included in the visual sequence.</figcaption>
           </figure>
-          <figure class="kb reveal figure-card third portrait">
+          <figure class="kb figure-card third portrait">
             <picture>
-              <source srcset="images/optimized/campus_bewellbroncos.webp" type="image/webp">
+              <source type="image/webp" srcset="images/optimized/campus_bewellbroncos-480.webp 480w, images/optimized/campus_bewellbroncos-800.webp 800w" sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 900px) 50vw, 370px">
               <img src="images/campus_bewellbroncos.jpg" width="800" height="1422" loading="lazy" decoding="async" alt="A Be Well Broncos sign on the Santa Clara University campus lawn.">
             </picture>
             <figcaption>"Be Well, Broncos" — the university's wellness messaging stayed visible across campus while students said they felt unheard.</figcaption>
@@ -334,8 +337,8 @@
         <div>
           <p class="kicker">About the author</p>
           <h2 id="about-title">Carlos Ceja</h2>
-          <p style="color: var(--stone); margin-top: var(--sp-3);">Created for COMM 3: Visual Storytelling at Santa Clara University, this portfolio is a research-driven narrative about a moment that deeply affected the campus community.</p>
-          <p style="color: var(--stone);">I'm a Communications major at SCU, a U.S. Army veteran, a tech worker, and a first-generation Mexican American. This project reflects my interest in how institutions communicate care, responsibility, and change when students are under pressure.</p>
+          <p class="text-secondary mt-3">Created for COMM 3: Visual Storytelling at Santa Clara University, this portfolio is a research-driven narrative about a moment that deeply affected the campus community.</p>
+          <p class="text-secondary">I'm a Communications major at SCU, a U.S. Army veteran, a tech worker, and a first-generation Mexican American. This project reflects my interest in how institutions communicate care, responsibility, and change when students are under pressure.</p>
         </div>
       </div>
     </section>
@@ -343,8 +346,8 @@
     <!-- ============================================================
          RESOURCES — ember warmth returns; care ends the piece
     ============================================================ -->
-    <div class="video-band video-band--candle" aria-hidden="true">
-      <video class="ambient-video" data-ambient muted loop playsinline preload="none" poster="media/candle-poster.jpg"><source src="media/candle.mp4" type="video/mp4"></video>
+    <div class="video-band video-band--candle">
+      <video class="ambient-video" aria-hidden="true" data-ambient muted loop playsinline preload="none" poster="media/candle-poster.jpg"><source src="media/candle.mp4" type="video/mp4"></video>
       <p class="band-caption">In memory</p>
     </div>
 
@@ -353,11 +356,11 @@
         <span class="chapter-num">Chapter 05</span>
         <p class="kicker kicker--ember reveal">Support resources</p>
         <h2 id="resources-title" class="reveal">If this story brings something up, reach out.</h2>
-        <p class="readable reveal" style="color: var(--stone);">The purpose of this portfolio is awareness and reflection, not leaving anyone alone with difficult material.</p>
+        <p class="readable reveal">The purpose of this portfolio is awareness and reflection, not leaving anyone alone with difficult material.</p>
         <div class="resource-grid">
           <article class="resource-card resource-card--ember reveal">
             <h3>988 Lifeline</h3>
-            <p>Call or text <a href="tel:988">988</a> for 24/7 support in the United States.</p>
+            <p><a class="crisis-link" href="tel:988">Call</a> or <a class="crisis-link" href="sms:988">text 988</a> for 24/7 support in the United States.</p>
           </article>
           <article class="resource-card reveal">
             <h3>SCU CAPS</h3>
@@ -382,73 +385,154 @@
       <span><a href="mailto:cceja@scu.edu">cceja@scu.edu</a> &nbsp;·&nbsp; <a href="https://github.com/carlosceja27" target="_blank" rel="noopener noreferrer">GitHub</a></span>
     </div>
   </footer>
-  <aside class="crisis-note" aria-label="Crisis support">988 Suicide &amp; Crisis Lifeline — call or text <a href="tel:988">988</a> · <a href="https://www.scu.edu/bewell/caps/" target="_blank" rel="noopener noreferrer">SCU CAPS</a></aside>
+  <aside class="crisis-note" aria-label="Crisis support and media controls">
+    <p class="crisis-text">988 Suicide &amp; Crisis Lifeline — <a class="crisis-link" href="tel:988">call</a> or <a class="crisis-link" href="sms:988">text 988</a> · <a class="crisis-link" href="https://www.scu.edu/bewell/caps/" target="_blank" rel="noopener noreferrer">SCU CAPS</a></p>
+    <div class="media-controls">
+      <button class="btn btn--secondary btn--sm listen-indicator" type="button" hidden data-listen><span class="dot" aria-hidden="true"></span><svg class="icon icon-play" aria-hidden="true" focusable="false"><use href="#i-play"/></svg><svg class="icon icon-pause" aria-hidden="true" focusable="false"><use href="#i-pause"/></svg><span data-listen-label>Listen</span></button>
+      <button class="btn btn--ghost btn--sm motion-toggle" type="button" hidden data-motion-toggle>Pause motion</button>
+    </div>
+  </aside>
 
   <!-- ============================================================
-       SCRIPTS — dependency-free
+       SCRIPTS — no build step; audio uses the SoundCloud iframe + Widget API
   ============================================================ -->
   <script>
-    // Progressive enhancement gate — set FIRST, before any observer setup
-    document.documentElement.classList.add('js');
+    var motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Measured insets: sticky header + fixed support note drive scroll padding
+    (function () {
+      var root = document.documentElement;
+      var header = document.querySelector('.site-header');
+      var note = document.querySelector('.crisis-note');
+      if (!header || !note) return;
+      function updateInsets() {
+        var sticky = getComputedStyle(header).position === 'sticky';
+        root.style.setProperty('--header-h', (sticky ? header.getBoundingClientRect().height : 0) + 'px');
+        root.style.setProperty('--support-h', note.getBoundingClientRect().height + 'px');
+      }
+      if ('ResizeObserver' in window) {
+        var ro = new ResizeObserver(updateInsets);
+        ro.observe(header); ro.observe(note);
+      }
+      window.addEventListener('resize', updateInsets);
+      updateInsets();
+    }());
 
-    // Audio story: autoload + autoplay attempt; fallback to first interaction
+    // Audio story: one Widget-API autoplay attempt on READY, bounded loading
+    // state, and a one-time first-gesture fallback if the browser blocks it.
     (function () {
       var iframe = document.getElementById('sc-iframe');
       var btn = document.querySelector('[data-listen]');
-      if (!iframe) return;
+      if (!iframe || !btn) return;
+      var label = btn.querySelector('[data-listen-label]');
       var s = document.createElement('script');
       s.src = 'https://w.soundcloud.com/player/api.js';
       s.onload = function () {
-        if (!window.SC) return;
-        var w = SC.Widget(iframe), playing = false, events = ['pointerdown','keydown','touchstart','scroll','click'];
-        var label = btn && btn.querySelector('[data-listen-label]');
-        function setState(state) {
-          if (!btn) return;
-          btn.removeAttribute('aria-busy');
-          if (state === 'loading') btn.setAttribute('aria-busy', 'true');
-          btn.setAttribute('aria-pressed', state === 'playing' ? 'true' : 'false');
-          if (label) label.textContent = state === 'playing' ? 'Pause' : (state === 'paused' ? 'Listen' : label.textContent);
+        if (!window.SC || !SC.Widget) return;
+        var w = SC.Widget(iframe);
+        var playing = false, pending = false, userPaused = false, startTimer;
+        var gestures = ['pointerdown', 'keydown', 'touchstart'];
+
+        function render() {
+          btn.setAttribute('data-playing', String(playing));
+          if (pending) btn.setAttribute('aria-busy', 'true'); else btn.removeAttribute('aria-busy');
+          label.textContent = playing ? 'Pause' : 'Listen';
         }
-        function startOnInteract() { setState('loading'); w.play(); cleanup(); }
-        function cleanup() { events.forEach(function (e) { window.removeEventListener(e, startOnInteract); }); }
-        w.bind(SC.Widget.Events.PLAY, function () { playing = true; if (btn) btn.hidden = false; setState('playing'); cleanup(); });
-        w.bind(SC.Widget.Events.PAUSE, function () { playing = false; setState('paused'); });
-        w.bind(SC.Widget.Events.FINISH, function () { playing = false; setState('paused'); });
-        w.bind(SC.Widget.Events.READY, function () {
+        function settle(isPlaying) {
+          clearTimeout(startTimer);
+          playing = isPlaying; pending = false;
+          render();
+        }
+        function requestPlay() {
+          if (pending) return;
+          pending = true; render();
           w.play();
-          setTimeout(function () {
-            if (playing) return;
-            if (btn) btn.hidden = false;
-            events.forEach(function (e) { window.addEventListener(e, startOnInteract, { once: true, passive: true }); });
-          }, 1500);
+          startTimer = setTimeout(function () {
+            pending = false; render();
+            if (!playing && !userPaused) armGesture();
+          }, 4000);
+        }
+        function removeGesture() {
+          gestures.forEach(function (e) { window.removeEventListener(e, onGesture, true); });
+        }
+        function onGesture(ev) {
+          if (btn.contains(ev.target)) return; // the button handles itself
+          removeGesture();
+          if (!playing && !userPaused) requestPlay();
+        }
+        var armed = false;
+        function armGesture() {
+          if (armed) return; armed = true;
+          gestures.forEach(function (e) { window.addEventListener(e, onGesture, { capture: true, passive: true }); });
+        }
+
+        w.bind(SC.Widget.Events.READY, function () {
+          btn.hidden = false; btn.disabled = false;
+          requestPlay();
         });
-        if (btn) btn.addEventListener('click', function (ev) {
-          ev.stopPropagation(); cleanup();
-          if (playing) { w.pause(); } else { setState('loading'); w.play(); }
+        w.bind(SC.Widget.Events.PLAY, function () { removeGesture(); settle(true); });
+        w.bind(SC.Widget.Events.PAUSE, function () { settle(false); });
+        w.bind(SC.Widget.Events.FINISH, function () { settle(false); });
+
+        btn.addEventListener('click', function () {
+          removeGesture();
+          if (playing) { userPaused = true; w.pause(); }
+          else { userPaused = false; requestPlay(); }
         });
       };
-      s.onerror = function () { if (btn) btn.hidden = true; };
+      s.onerror = function () { btn.hidden = true; };
       document.head.appendChild(s);
     }());
 
-    // Ambient videos: play only on screen; poster only for reduced motion
+    // Ambient motion: videos play only while visible, the page is shown,
+    // reduced motion is off, and the reader hasn't paused motion.
     (function () {
-      var vids = document.querySelectorAll('video[data-ambient]');
-      if (reduceMotion) { vids.forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); }); return; }
-      if (!('IntersectionObserver' in window)) return;
-      var vio = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          var v = en.target;
-          if (en.isIntersecting) { if (v.preload === 'none') { v.preload = 'auto'; v.load(); } var p = v.play(); if (p) p.catch(function () {}); }
-          else v.pause();
-        });
-      }, { rootMargin: '200px 0px' });
-      vids.forEach(function (v) { vio.observe(v); });
+      var root = document.documentElement;
+      var vids = Array.prototype.slice.call(document.querySelectorAll('video[data-ambient]'));
+      var toggle = document.querySelector('[data-motion-toggle]');
+      var visible = new Set();
+      var userPaused = false;
+      try { userPaused = localStorage.getItem('motion') === 'paused'; } catch (e) {}
+
+      function allowed() { return !motionQuery.matches && !userPaused; }
+      function syncVideo(v) {
+        if (visible.has(v) && allowed() && !document.hidden) {
+          if (v.preload !== 'auto') { v.preload = 'auto'; }
+          var p = v.play(); if (p) p.catch(function () {});
+        } else {
+          v.pause();
+        }
+      }
+      function syncAll() {
+        root.classList.toggle('motion-paused', !allowed());
+        vids.forEach(syncVideo);
+        if (toggle) {
+          toggle.hidden = motionQuery.matches;
+          toggle.textContent = userPaused ? 'Play motion' : 'Pause motion';
+          toggle.setAttribute('data-paused', String(userPaused));
+        }
+      }
+      if (toggle) toggle.addEventListener('click', function () {
+        userPaused = !userPaused;
+        try { localStorage.setItem('motion', userPaused ? 'paused' : 'on'); } catch (e) {}
+        syncAll();
+      });
+      if ('IntersectionObserver' in window) {
+        var vio = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) visible.add(en.target); else visible.delete(en.target);
+            syncVideo(en.target);
+          });
+        }, { rootMargin: '0px', threshold: 0.01 });
+        vids.forEach(function (v) { vio.observe(v); });
+      }
+      if (motionQuery.addEventListener) motionQuery.addEventListener('change', syncAll);
+      else if (motionQuery.addListener) motionQuery.addListener(syncAll);
+      document.addEventListener('visibilitychange', syncAll);
+      syncAll();
     }());
 
-    // Reading progress bar
+    // Reading progress bar (recalculated on scroll and on layout change)
     (function () {
       var bar = document.querySelector('.progress');
       if (!bar) return;
@@ -458,27 +542,37 @@
         bar.style.transform = 'scaleX(' + (max > 0 ? d.scrollTop / max : 0) + ')';
         ticking = false;
       }
-      window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+      function schedule() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+      window.addEventListener('scroll', schedule, { passive: true });
+      window.addEventListener('resize', schedule);
+      if ('ResizeObserver' in window) new ResizeObserver(schedule).observe(document.body);
       update();
     }());
 
-    // Reveal on scroll (opacity + translateY; transform/opacity only)
+    // Reveal on scroll — fail open: content is hidden only after the
+    // observer exists (html.reveal-enabled). No observer = everything shows.
     (function () {
-      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (prefersReduced) return; // CSS already handles this, but skip JS overhead too
-
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
+      var root = document.documentElement;
+      var targets = document.querySelectorAll('.reveal, .reveal-group, .kb');
+      if (!('IntersectionObserver' in window) || motionQuery.matches) return;
+      try {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
             entry.target.classList.add('is-visible');
             io.unobserve(entry.target);
-          }
+          });
+        }, { threshold: 0.05 });
+        targets.forEach(function (el) {
+          // Don't hide what's already on screen at load
+          var r = el.getBoundingClientRect();
+          if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('is-visible');
+          else io.observe(el);
         });
-      }, { threshold: 0.12 });
-
-      document.querySelectorAll('.reveal, .reveal-group, .kb').forEach(function (el) {
-        io.observe(el);
-      });
+        root.classList.add('reveal-enabled');
+      } catch (e) {
+        root.classList.remove('reveal-enabled');
+      }
     }());
   </script>
 </body>
