@@ -1,0 +1,1277 @@
+/* ============================================================
+   DESIGN TOKENS — "What was suppressed"
+   SCU's warm brand plunged into near-black.
+   Cardinal = the wound. Ember = the lone vigil candle.
+   Bone = candlelit humanity. Stone = cold institution.
+============================================================ */
+:root {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --void:       #0c0a0b;
+  --coal:       #15110f;
+  --ash:        #1c1714;
+  --ash-line:   #2e2722;
+
+  /* Text */
+  --bone:       #f1ebe0;   /* primary text — warm, candlelit; 16.6:1 on void */
+  --stone:      #9aa3ad;   /* secondary — cool, institutional; 7.7:1 */
+  --faint:      #868d96;   /* meta/tertiary; 5.9:1 */
+
+  /* Brand colours recast */
+  --cardinal:       #862633;   /* fills, wound — use bone/white on it, 7.6:1 */
+  --cardinal-lit:   #e06676;   /* red AS text/link on dark; 5.95:1 */
+  --ember:          #ffb600;   /* SCU Sunrise gold — vigil candle; 11.2:1 */
+
+  /* Fonts */
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-serif:   "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --font-mono:    ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+
+  /* Layout */
+  --max:    1120px;
+  --read:   65ch;
+
+  /* Spacing (8pt scale) */
+  --sp-1:  0.5rem;   /*  8px */
+  --sp-2:  1rem;     /* 16px */
+  --sp-3:  1.5rem;   /* 24px */
+  --sp-4:  2rem;     /* 32px */
+  --sp-5:  2.5rem;   /* 40px */
+  --sp-6:  3rem;     /* 48px */
+  --sp-8:  4rem;     /* 64px */
+  --sp-10: 5rem;     /* 80px */
+  --sp-12: 6rem;     /* 96px */
+  --sp-16: 8rem;     /* 128px */
+
+  --radius: 4px;
+}
+
+/* ============================================================
+   RESET & BASE
+============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+  background: var(--void);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-serif);
+  background: var(--void);
+  color: var(--bone);
+  font-size: 1.0625rem; /* 17px base */
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+img, iframe { max-width: 100%; display: block; }
+img { height: auto; background: var(--ash); }
+
+p {
+  margin: 0 0 var(--sp-2);
+  font-family: var(--font-serif);
+  color: var(--bone);
+}
+p:last-child { margin-bottom: 0; }
+
+strong { font-weight: 700; }
+
+a {
+  color: var(--cardinal-lit);
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+  transition: color 180ms ease, opacity 180ms ease;
+}
+a:hover { color: var(--ember); }
+
+/* Focus — ember glow, high-contrast, never hidden */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   SKIP LINK
+============================================================ */
+.skip-link {
+  position: absolute;
+  left: var(--sp-2);
+  top: -120px;
+  z-index: 100;
+  background: var(--ember);
+  color: var(--void);
+  padding: var(--sp-1) var(--sp-2);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.skip-link:focus { top: var(--sp-2); }
+
+/* ============================================================
+   KICKER / EYEBROW (mono, "case file" texture)
+============================================================ */
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--faint);
+  margin: 0 0 var(--sp-1);
+  line-height: 1.4;
+}
+.kicker--ember { color: var(--ember); }
+.kicker--cardinal { color: var(--cardinal-lit); }
+
+/* ============================================================
+   HEADINGS (display — heavy, monumental)
+============================================================ */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  margin: 0;
+  color: var(--bone);
+  text-wrap: balance;
+  letter-spacing: -0.035em;
+  line-height: 1.0;
+}
+
+h1 {
+  font-size: clamp(2.8rem, 8vw, 5.8rem);
+  font-weight: 860;
+  letter-spacing: -0.04em;
+  line-height: 0.97;
+  max-width: 960px;
+}
+
+h2 {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 820;
+  letter-spacing: -0.035em;
+  line-height: 1.0;
+  max-width: 880px;
+  margin-bottom: var(--sp-4);
+}
+
+h3 {
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: var(--sp-2);
+}
+
+/* ============================================================
+   LEDE / BODY LEAD
+============================================================ */
+.lede {
+  font-family: var(--font-serif);
+  font-size: clamp(1.125rem, 2vw, 1.3rem);
+  color: var(--stone);
+  max-width: var(--read);
+  margin-top: var(--sp-3);
+  line-height: 1.6;
+}
+
+.readable {
+  max-width: var(--read);
+  color: var(--stone);
+}
+.readable p { color: var(--stone); }
+
+/* ============================================================
+   CONTENT WARNING BAR
+============================================================ */
+.content-warning {
+  background: var(--coal);
+  border-bottom: 2px solid var(--cardinal);
+  border-left: none;
+}
+
+.warning-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--sp-2) var(--sp-3);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--sp-2);
+  align-items: center;
+}
+
+.warning-inner p {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--stone);
+}
+.warning-inner strong {
+  color: var(--cardinal-lit);
+  font-weight: 600;
+}
+
+.warning-actions {
+  display: flex;
+  gap: var(--sp-1);
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   BUTTONS
+============================================================ */
+.btn {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.72rem 1.25rem;
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  line-height: 1.2;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+/* Cardinal fill — primary action */
+.btn--primary {
+  background: var(--cardinal);
+  color: var(--bone);
+  border-color: var(--cardinal);
+}
+.btn--primary:hover {
+  background: #a02d3e;
+  color: var(--bone);
+  border-color: #a02d3e;
+}
+
+/* Ghost / quiet — secondary */
+.btn--ghost {
+  background: transparent;
+  color: var(--stone);
+  border-color: var(--ash-line);
+}
+.btn--ghost:hover {
+  color: var(--bone);
+  border-color: var(--stone);
+}
+
+/* Ember accent — for 988 / care actions */
+.btn--ember {
+  background: var(--ember);
+  color: var(--void);
+  border-color: var(--ember);
+}
+.btn--ember:hover {
+  background: #e6a300;
+  color: var(--void);
+  border-color: #e6a300;
+}
+
+/* Quiet/warning bar ghost */
+.btn--quiet {
+  background: transparent;
+  color: var(--stone);
+  border-color: var(--ash-line);
+}
+.btn--quiet:hover {
+  color: var(--bone);
+  border-color: var(--stone);
+}
+
+/* Legacy .btn support for the SoundCloud trigger */
+.btn:not([class*="btn--"]) {
+  background: var(--cardinal);
+  color: var(--bone);
+  border-color: var(--cardinal);
+}
+.btn:not([class*="btn--"]):hover {
+  background: #a02d3e;
+  color: var(--bone);
+}
+
+/* ============================================================
+   SITE HEADER / NAV
+============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(12, 10, 11, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--ash-line);
+}
+
+.nav {
+  max-width: var(--max);
+  margin: 0 auto;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  padding: 0 var(--sp-3);
+}
+
+.brand {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--stone);
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+.brand:hover { color: var(--bone); }
+
+.nav-links {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--stone);
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  transition: color 180ms ease;
+}
+.nav-links a:hover { color: var(--bone); }
+
+/* ============================================================
+   LAYOUT UTILITIES
+============================================================ */
+main { overflow: hidden; }
+
+.section {
+  padding: var(--sp-12) var(--sp-3);
+  border-bottom: 1px solid var(--ash-line);
+}
+.section--void  { background: var(--void); }
+.section--coal  { background: var(--coal); }
+.section--ash   { background: var(--ash);  }
+
+.container { max-width: var(--max); margin: 0 auto; }
+
+/* Decorative cardinal rule */
+.rule-cardinal {
+  display: block;
+  width: 3rem;
+  height: 2px;
+  background: var(--cardinal);
+  border: none;
+  margin: var(--sp-4) 0;
+}
+
+/* ============================================================
+   HERO
+============================================================ */
+.hero {
+  position: relative;
+  background: var(--void);
+  border-bottom: 1px solid var(--ash-line);
+  overflow: hidden;
+  min-height: 100svh;
+}
+
+/* Full-bleed protest photo, heavily darkened */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-bg picture,
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  /* Desaturate, heavily darken, cool-shift */
+  filter: grayscale(0.5) contrast(1.06) brightness(0.34);
+  display: block;
+}
+/* Gradient overlay: crowd reads up top, dissolving into void beneath the text */
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(12,10,11,0.45) 0%,
+      rgba(12,10,11,0.18) 28%,
+      rgba(12,10,11,0.80) 74%,
+      rgba(12,10,11,1.00) 100%),
+    linear-gradient(to right,
+      rgba(12,10,11,0.82) 0%,
+      rgba(12,10,11,0.30) 52%,
+      transparent 82%);
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--sp-16) var(--sp-3) var(--sp-12);
+}
+
+.hero-dateline {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--faint);
+  margin-bottom: var(--sp-3);
+}
+
+.hero-title {
+  /* h1 handled globally */
+}
+
+.hero-subhead {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  color: var(--stone);
+  max-width: 62ch;
+  line-height: 1.6;
+  margin-top: var(--sp-4);
+  margin-bottom: 0;
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  margin-top: var(--sp-6);
+}
+
+.hero-credit {
+  margin-top: var(--sp-6);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--faint);
+}
+
+/* ============================================================
+   STORY / CATALYST
+============================================================ */
+.timeline {
+  display: grid;
+  gap: 0;
+  margin-top: var(--sp-6);
+  max-width: 820px;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 8px minmax(0, 1fr);
+  gap: 0 var(--sp-4);
+  padding-bottom: var(--sp-5);
+  position: relative;
+}
+
+/* Cardinal thread line */
+.timeline-item::before {
+  content: '';
+  grid-column: 1;
+  grid-row: 1 / -1;
+  width: 2px;
+  background: var(--cardinal);
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Cardinal marker dot */
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cardinal);
+  margin-left: 0;
+  transform: none;
+}
+
+.timeline-item:last-child::before {
+  display: none;
+}
+
+.timeline-body {
+  grid-column: 2;
+  padding-bottom: var(--sp-1);
+}
+
+.timeline-date {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--cardinal-lit);
+  margin-bottom: var(--sp-1);
+  display: block;
+}
+
+.timeline-body p {
+  color: var(--stone);
+  margin: 0;
+}
+.timeline-body strong { color: var(--bone); }
+
+/* ============================================================
+   PERSPECTIVE / PULL ASIDE
+============================================================ */
+.perspective {
+  margin-top: var(--sp-6);
+  padding: var(--sp-1) 0 var(--sp-1) var(--sp-4);
+  border-left: 2px solid var(--ember);
+  background: transparent;
+  max-width: 760px;
+}
+.perspective .kicker { color: var(--ember); }
+.perspective p {
+  color: var(--bone);
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  line-height: 1.65;
+}
+
+/* ============================================================
+   SIGNATURE MOMENT — Kelley classroom exchange
+============================================================ */
+.signature-section {
+  background: var(--void);
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  padding: var(--sp-12) var(--sp-3);
+  border-top: 1px solid var(--ash-line);
+  border-bottom: 1px solid var(--ash-line);
+  position: relative;
+}
+
+.signature-inner {
+  max-width: 980px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Vigil candle — a single flame held in the dark */
+.ember-mark {
+  position: relative;
+  display: block;
+  width: 3px;
+  height: 64px;
+  background: linear-gradient(to top, var(--cardinal) 0%, var(--ember) 68%, #fff3d6 100%);
+  border-radius: 2px;
+  margin-bottom: var(--sp-6);
+  flex-shrink: 0;
+}
+.ember-mark::before {
+  content: '';
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  width: 9px;
+  height: 15px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, #fff3d6, var(--ember) 55%, transparent 75%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  filter: blur(1px);
+}
+.ember-mark::after {
+  content: '';
+  position: absolute;
+  top: -38px;
+  left: 50%;
+  width: 130px;
+  height: 130px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(255,182,0,0.15), transparent 72%);
+  pointer-events: none;
+}
+
+/* The emotional peak — must be unmistakable */
+.signature-quote,
+.signature-quote p {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--bone);
+  max-width: 18ch;
+  margin: 0;
+}
+
+.signature-quote .line-two {
+  display: block;
+  color: var(--cardinal-lit);
+  margin-top: 0.45em;
+}
+
+.signature-attribution {
+  margin-top: var(--sp-8);
+  max-width: 56ch;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  line-height: 1.6;
+  color: var(--faint);
+}
+
+/* ============================================================
+   EVIDENCE / STATS
+============================================================ */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--sp-1);
+  margin-top: var(--sp-6);
+}
+
+.stat-card {
+  background: var(--ash);
+  border: 1px solid var(--ash-line);
+  padding: var(--sp-4) var(--sp-3);
+  position: relative;
+}
+
+/* The suicidal-ideation figure breaks the row — a cardinal block, a physical interruption */
+.stat-card--heavy {
+  background: var(--cardinal);
+  border-color: var(--cardinal);
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 860;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: var(--bone);
+  margin-bottom: var(--sp-2);
+  display: block;
+}
+
+.stat-card--heavy .stat-number {
+  color: var(--bone);
+  font-size: clamp(2.8rem, 7vw, 4.6rem);
+}
+.stat-card--heavy p {
+  color: rgba(241, 235, 224, 0.82);
+}
+
+.stat-card p {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--faint);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   INTERVIEW
+============================================================ */
+.feature-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(300px, 1.1fr);
+  gap: var(--sp-8);
+  align-items: start;
+}
+
+.figure-card {
+  margin: 0;
+  background: var(--ash);
+  border: 1px solid var(--ash-line);
+  overflow: hidden;
+}
+
+.figure-card img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  /* Darken portrait consistently */
+  filter: grayscale(0.2) contrast(1.05) brightness(0.75);
+}
+
+/* Portrait aspect override */
+.figure-card.portrait img {
+  aspect-ratio: 4 / 5;
+}
+
+/* Interview composite is a landscape screen-share — show the whole frame
+   at its true ratio so neither face is cropped. */
+.figure-card.interview-shot img {
+  aspect-ratio: 800 / 492;
+  object-fit: contain;
+}
+
+.figure-card figcaption {
+  padding: var(--sp-2);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--faint);
+  border-top: 1px solid var(--ash-line);
+}
+
+.audio-card {
+  background: var(--ash);
+  border: 1px solid var(--ash-line);
+  padding: var(--sp-4);
+}
+
+.audio-card h3 {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  margin-bottom: var(--sp-1);
+}
+
+.audio-frame {
+  border: 1px solid var(--ash-line);
+  background: var(--coal);
+  margin-top: var(--sp-3);
+}
+
+.audio-frame iframe {
+  width: 100%;
+  height: 166px;
+  border: 0;
+  /* Invert the SC player chrome to sit on dark */
+  filter: invert(0.88) hue-rotate(175deg) brightness(0.88);
+}
+
+.audio-placeholder {
+  padding: var(--sp-4);
+}
+.audio-placeholder p {
+  color: var(--stone);
+  font-size: 0.925rem;
+  margin-bottom: var(--sp-3);
+}
+
+details {
+  margin-top: var(--sp-3);
+  border: 1px solid var(--ash-line);
+  background: var(--coal);
+}
+
+summary {
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding: var(--sp-2);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--stone);
+  list-style: none;
+  transition: color 180ms ease;
+}
+summary:hover { color: var(--bone); }
+summary::-webkit-details-marker { display: none; }
+
+details .details-body {
+  padding: var(--sp-3) var(--sp-3) var(--sp-4);
+  border-top: 1px solid var(--ash-line);
+}
+
+.details-body p {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--stone);
+  line-height: 1.65;
+  font-style: italic;
+}
+.details-body strong {
+  font-style: normal;
+  color: var(--faint);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* ============================================================
+   QUOTES
+============================================================ */
+.quote-stack {
+  display: grid;
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
+}
+
+.quote-card {
+  background: var(--ash);
+  border: 1px solid var(--ash-line);
+  border-left: 3px solid var(--cardinal);
+  padding: var(--sp-4) var(--sp-5);
+}
+
+blockquote {
+  margin: 0;
+  padding: 0;
+}
+
+blockquote p {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--bone);
+  margin-bottom: var(--sp-2);
+}
+
+blockquote footer {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--faint);
+  font-style: normal;
+}
+
+/* ============================================================
+   VISUAL STORY / PHOTO GRID
+============================================================ */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 3px; /* tight mosaic — let darkness breathe between frames */
+  margin-top: var(--sp-6);
+}
+
+.photo-grid .figure-card { box-shadow: none; }
+.photo-grid .wide   { grid-column: span 7; }
+.photo-grid .narrow { grid-column: span 5; }
+.photo-grid .third  { grid-column: span 4; }
+
+/* Unified dark duotone on all photo-grid images */
+.photo-grid .figure-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-grid .figure-card img {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  object-fit: cover;
+  filter: grayscale(0.3) contrast(1.05) brightness(0.72);
+  transition: filter 450ms ease;
+}
+
+.photo-grid .figure-card.portrait img {
+  aspect-ratio: 3 / 4;
+}
+
+/* Cardinal gradient overlay via ::after */
+.photo-grid .figure-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 45%,
+    rgba(12,10,11,0.55) 100%
+  );
+  pointer-events: none;
+  transition: opacity 450ms ease;
+}
+
+/* Hover: gently lift brightness */
+.photo-grid .figure-card:hover img {
+  filter: grayscale(0.15) contrast(1.02) brightness(0.85);
+}
+.photo-grid .figure-card:hover::after {
+  opacity: 0.6;
+}
+
+.artist-statement {
+  margin-top: var(--sp-6);
+  padding: var(--sp-5);
+  border-left: 3px solid var(--ash-line);
+  background: var(--ash);
+  max-width: 780px;
+}
+.artist-statement p { color: var(--stone); }
+
+/* ============================================================
+   METHOD
+============================================================ */
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-2);
+  margin-top: var(--sp-6);
+}
+
+.method-card {
+  padding: var(--sp-5) var(--sp-4);
+  background: var(--ash);
+  border: 1px solid var(--ash-line);
+  border-top: 2px solid var(--ash-line);
+}
+
+.method-card h3 { font-size: 1.15rem; margin-bottom: var(--sp-2); }
+.method-card p  { color: var(--stone); font-size: 0.95rem; margin: 0; }
+
+/* ============================================================
+   ABOUT
+============================================================ */
+.author-grid {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: var(--sp-6);
+  align-items: start;
+  max-width: 880px;
+}
+
+.author-grid picture {
+  display: block;
+}
+
+.author-grid img {
+  width: 160px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--ash-line);
+  filter: grayscale(0.3) contrast(1.05) brightness(0.75);
+}
+
+/* ============================================================
+   RESOURCES — ember candle warmth concentrates here
+============================================================ */
+.resources-section {
+  background: var(--coal);
+  border-bottom: 1px solid var(--ash-line);
+  padding: var(--sp-12) var(--sp-3);
+  border-top: 2px solid var(--ember);
+}
+
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-2);
+  margin-top: var(--sp-6);
+}
+
+.resource-card {
+  background: var(--ash);
+  border: 1px solid var(--ash-line);
+  padding: var(--sp-5) var(--sp-4);
+}
+
+/* 988 card gets ember accent */
+.resource-card--ember {
+  border-top: 2px solid var(--ember);
+}
+.resource-card--ember h3 {
+  color: var(--ember);
+}
+
+.resource-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: var(--sp-2);
+}
+
+.resource-card p { color: var(--stone); font-size: 0.95rem; margin: 0; }
+.resource-card a { color: var(--ember); }
+.resource-card a:hover { color: var(--bone); }
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.site-footer {
+  padding: var(--sp-5) var(--sp-3);
+  background: var(--void);
+  border-top: 1px solid var(--ash-line);
+}
+
+.footer-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.footer-inner span,
+.footer-inner a {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--faint);
+}
+
+.footer-inner a { color: var(--stone); }
+.footer-inner a:hover { color: var(--bone); }
+
+/* ============================================================
+   PROGRESSIVE REVEAL (IntersectionObserver)
+   Gate hidden state behind .js class so no-JS shows everything.
+============================================================ */
+html:not(.js) .reveal { opacity: 1 !important; transform: none !important; }
+
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 700ms ease-out, transform 700ms ease-out;
+}
+
+html.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger children within a .reveal-group */
+html.js .reveal-group > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 700ms ease-out, transform 700ms ease-out;
+}
+html.js .reveal-group.is-visible > *:nth-child(1) { transition-delay: 0ms;   opacity: 1; transform: none; }
+html.js .reveal-group.is-visible > *:nth-child(2) { transition-delay: 80ms;  opacity: 1; transform: none; }
+html.js .reveal-group.is-visible > *:nth-child(3) { transition-delay: 160ms; opacity: 1; transform: none; }
+html.js .reveal-group.is-visible > *:nth-child(4) { transition-delay: 240ms; opacity: 1; transform: none; }
+
+/* Optional ember candle flicker */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  30%       { opacity: 0.82; }
+  60%       { opacity: 0.93; }
+  75%       { opacity: 0.76; }
+}
+.ember-mark {
+  animation: flicker 4s ease-in-out infinite;
+}
+
+/* ============================================================
+   REDUCED MOTION — full disable
+============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  html.js .reveal,
+  html.js .reveal-group > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — 900px breakpoint
+============================================================ */
+@media (max-width: 900px) {
+  .warning-inner { grid-template-columns: 1fr; }
+  .hero-inner { padding-top: var(--sp-12); }
+  .feature-grid { grid-template-columns: 1fr; }
+  .stat-grid { grid-template-columns: 1fr 1fr; }
+  .author-grid { grid-template-columns: 1fr; }
+  .method-grid { grid-template-columns: 1fr 1fr; }
+  .resource-grid { grid-template-columns: 1fr 1fr; }
+  .photo-grid .wide,
+  .photo-grid .narrow,
+  .photo-grid .third { grid-column: span 6; }
+}
+
+/* ============================================================
+   RESPONSIVE — 640px breakpoint
+============================================================ */
+@media (max-width: 640px) {
+  html { scroll-padding-top: 0; }
+  .site-header { position: static; }
+  .nav {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: var(--sp-2) var(--sp-2);
+    min-height: auto;
+    gap: var(--sp-1);
+  }
+  .nav-links {
+    justify-content: flex-start;
+    gap: var(--sp-2);
+    flex-wrap: wrap;
+  }
+  .warning-inner { padding: var(--sp-2); }
+  .warning-actions,
+  .hero-actions { flex-direction: column; align-items: stretch; }
+
+  .section { padding: var(--sp-10) var(--sp-2); }
+  .signature-section { padding: var(--sp-10) var(--sp-2); }
+  .resources-section { padding: var(--sp-10) var(--sp-2); }
+
+  .timeline-item { grid-template-columns: 8px 1fr; }
+
+  .stat-grid,
+  .method-grid,
+  .resource-grid { grid-template-columns: 1fr; }
+
+  .photo-grid {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+  .photo-grid .wide,
+  .photo-grid .narrow,
+  .photo-grid .third { grid-column: auto; }
+
+  .author-grid img { width: 120px; }
+
+  .quote-card { padding: var(--sp-3); }
+
+  blockquote p { font-size: 1.05rem; }
+
+  .signature-quote, .signature-quote p { font-size: clamp(1.9rem, 8vw, 2.8rem); max-width: 100%; }
+}
+
+/* ============================================================
+   UTILITY
+============================================================ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+.small {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--faint);
+}
+.small a { color: var(--stone); }
+.small a:hover { color: var(--bone); }
+
+.mt-2 { margin-top: var(--sp-2); }
+.mt-3 { margin-top: var(--sp-3); }
+.mt-4 { margin-top: var(--sp-4); }
+.mt-6 { margin-top: var(--sp-6); }
+
+/* ============================================================
+   DESIGN SYSTEM v2 — tokens (see docs/design-system.md)
+============================================================ */
+:root {
+  --font-headline: "Fraunces", "Source Serif 4", Georgia, serif;
+  --font-ui: "Inter", system-ui, sans-serif;
+  /* type scale (1.25 minor third-ish, fluid at top) */
+  --fs-xs: 0.75rem; --fs-sm: 0.875rem; --fs-base: 1.0625rem; --fs-md: 1.25rem;
+  --fs-lg: 1.5rem; --fs-xl: clamp(1.75rem, 3vw, 2.25rem);
+  --fs-2xl: clamp(2.25rem, 5vw, 3.5rem); --fs-hero: clamp(2.75rem, 8vw, 6rem);
+  --fw-regular: 400; --fw-medium: 500; --fw-semibold: 600; --fw-bold: 700;
+  /* 4px spacing scale */
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-6: 24px; --s-8: 32px;
+  --s-12: 48px; --s-16: 64px; --s-24: 96px; --s-32: 128px;
+  --radius-sm: 2px; --radius-md: 4px; --radius-lg: 8px; --radius-pill: 999px;
+  --shadow-1: 0 1px 2px rgba(0,0,0,.4);
+  --shadow-2: 0 12px 40px rgba(0,0,0,.55);
+  --dur-fast: 180ms; --dur-base: 600ms; --dur-slow: 1400ms; --dur-kenburns: 24s;
+  --ease-out: cubic-bezier(.22,.61,.36,1); --ease-inout: cubic-bezier(.65,0,.35,1);
+}
+h1, h2, .hero-title, .quote-card blockquote, .quote-card p:first-child { font-family: var(--font-headline); font-weight: var(--fw-regular); }
+figcaption { font-family: var(--font-ui); font-size: var(--fs-sm); line-height: 1.5; letter-spacing: .01em; color: var(--stone); border-left: 2px solid var(--cardinal); padding-left: var(--s-3); margin-top: var(--s-3); }
+.readable, .section p { max-width: var(--read); }
+
+/* Reading progress */
+.progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; transform-origin: 0 50%; transform: scaleX(0); background: var(--cardinal-lit); z-index: 1000; pointer-events: none; }
+
+/* Cinematic hero video */
+.hero-video, .ambient-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(.45) brightness(.42); }
+.hero-bg .hero-video { z-index: 0; }
+.hero-bg::after { z-index: 1; }
+html.js .hero-inner > * { opacity: 0; transform: translateY(12px); animation: heroIn var(--dur-slow) var(--ease-out) forwards; }
+html.js .hero-inner > *:nth-child(2) { animation-delay: .3s; } html.js .hero-inner > *:nth-child(3) { animation-delay: .7s; }
+html.js .hero-inner > *:nth-child(4) { animation-delay: 1s; } html.js .hero-inner > *:nth-child(5) { animation-delay: 1.2s; }
+@keyframes heroIn { to { opacity: 1; transform: none; } }
+
+/* Chapter labels */
+.chapter-num { display: block; font-family: var(--font-ui); font-size: var(--fs-xs); letter-spacing: .24em; text-transform: uppercase; color: var(--faint); margin-bottom: var(--s-2); }
+
+/* Ambient video bands */
+.video-band { position: relative; min-height: 56vh; overflow: hidden; display: grid; place-items: end start; border-block: 1px solid var(--ash-line); background: var(--void); }
+.video-band::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(12,10,11,.85), rgba(12,10,11,.2) 40%, rgba(12,10,11,.92)); }
+.video-band .band-caption { position: relative; z-index: 1; max-width: var(--max); width: 100%; margin: 0 auto; padding: var(--s-8) var(--s-6); font-family: var(--font-ui); font-size: var(--fs-sm); color: var(--stone); }
+.video-band--candle .ambient-video { filter: brightness(.8); }
+
+/* Ken Burns on stills (opt-in via .kb; never on underpass) */
+.kb { overflow: hidden; }
+.kb img { transform: scale(1.02); transition: transform var(--dur-kenburns) linear; }
+.kb.is-visible img, .kb:hover img { transform: scale(1.09); }
+
+/* Persistent crisis note */
+.crisis-note { position: fixed; right: var(--s-4); bottom: var(--s-4); z-index: 900; font-family: var(--font-ui); font-size: var(--fs-sm); background: rgba(21,17,15,.94); color: var(--bone); border: 1px solid var(--ash-line); border-radius: var(--radius-pill); padding: var(--s-2) var(--s-4); box-shadow: var(--shadow-2); }
+.crisis-note a { color: var(--ember); }
+.site-footer { padding-bottom: var(--s-16); }
+
+/* Listen indicator */
+.listen-indicator { display: inline-flex; align-items: center; gap: var(--s-2); margin: var(--s-3) 0; font-family: var(--font-ui); font-size: var(--fs-sm); color: var(--bone); background: transparent; border: 1px solid var(--cardinal-lit); border-radius: var(--radius-pill); padding: var(--s-2) var(--s-4); cursor: pointer; }
+.listen-indicator[hidden] { display: none; }
+.listen-indicator .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cardinal-lit); animation: pulse 1.6s var(--ease-inout) infinite; }
+@keyframes pulse { 50% { opacity: .3; } }
+
+@media (max-width: 600px) { .crisis-note { left: var(--s-3); right: var(--s-3); text-align: center; border-radius: var(--radius-md); } .video-band { min-height: 40vh; } }
+@media (prefers-reduced-motion: reduce) {
+  html.js .hero-inner > * { animation: none; opacity: 1; transform: none; }
+  .kb img { transition: none; transform: none; }
+  .listen-indicator .dot { animation: none; }
+}
