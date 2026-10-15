@@ -7,44 +7,105 @@
 :root {
   color-scheme: dark;
 
-  /* Surfaces */
+  /* ---- 1. PRIMITIVES (raw palette — do not use directly in components) ---- */
   --void:       #0c0a0b;
   --coal:       #15110f;
   --ash:        #1c1714;
   --ash-line:   #2e2722;
+  --bone:       #f1ebe0;
+  --stone:      #9aa3ad;
+  --faint:      #868d96;
+  --cardinal:       #862633;
+  --cardinal-hover: #a02d3e;
+  --cardinal-press: #6e1f2a;
+  --cardinal-lit:   #e06676;
+  --ember:          #ffb600;
+  --ember-hover:    #e6a300;
+  --ember-press:    #cc9200;
 
-  /* Text */
-  --bone:       #f1ebe0;   /* primary text — warm, candlelit; 16.6:1 on void */
-  --stone:      #9aa3ad;   /* secondary — cool, institutional; 7.7:1 */
-  --faint:      #868d96;   /* meta/tertiary; 5.9:1 */
+  /* ---- 2. SEMANTIC (Astryx-aligned; every background has an on-pair) ---- */
+  --background-body:     var(--void);
+  --background-surface:  var(--coal);
+  --background-card:     var(--ash);
+  --background-inverted: var(--bone);
+  --on-body:     var(--bone);
+  --on-surface:  var(--bone);
+  --on-card:     var(--bone);
+  --on-inverted: var(--void);
 
-  /* Brand colours recast */
-  --cardinal:       #862633;   /* fills, wound — use bone/white on it, 7.6:1 */
-  --cardinal-lit:   #e06676;   /* red AS text/link on dark; 5.95:1 */
-  --ember:          #ffb600;   /* SCU Sunrise gold — vigil candle; 11.2:1 */
+  --text-primary:   var(--bone);
+  --text-secondary: var(--stone);
+  --text-tertiary:  var(--faint);
+  --text-accent:    var(--cardinal-lit);
+  --text-care:      var(--ember);
 
-  /* Fonts */
-  --font-display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --font-serif:   "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
-  --font-mono:    ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  --accent-default: var(--cardinal);
+  --accent-hover:   var(--cardinal-hover);
+  --accent-pressed: var(--cardinal-press);
+  --on-accent:      var(--bone);
+
+  --care-default: var(--ember);
+  --care-hover:   var(--ember-hover);
+  --care-pressed: var(--ember-press);
+  --on-care:      var(--void);
+
+  --border-default:    var(--ash-line);
+  --border-emphasized: var(--stone);
+  --border-accent:     var(--cardinal-lit);
+  --focus-outline-color: var(--ember);
+  --focus-outline-width: 2px;
+  --focus-outline-offset: 3px;
+
+  /* Type families */
+  --family-heading: "Instrument Serif", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --family-body:    "Newsreader", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --family-ui:      "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Type scale (Astryx size/* names) */
+  --size-3xs: 0.6875rem; --size-2xs: 0.72rem; --size-xs: 0.75rem; --size-sm: 0.875rem;
+  --size-base: 1.0625rem; --size-md: 1.25rem; --size-lg: 1.5rem;
+  --size-xl: clamp(1.75rem, 3vw, 2.25rem); --size-2xl: clamp(2.25rem, 5vw, 3.5rem);
+  --size-3xl: clamp(3rem, 9vw, 6.75rem);
+  --weight-normal: 400; --weight-medium: 500; --weight-semibold: 600; --weight-bold: 700;
+
+  /* Spacing — 4px base, Astryx spacing/N */
+  --spacing-0: 0; --spacing-0-5: 2px; --spacing-1: 4px; --spacing-1-5: 6px; --spacing-2: 8px;
+  --spacing-3: 12px; --spacing-4: 16px; --spacing-5: 20px; --spacing-6: 24px; --spacing-8: 32px;
+  --spacing-10: 40px; --spacing-12: 48px; --spacing-16: 64px; --spacing-20: 80px;
+  --spacing-24: 96px; --spacing-32: 128px;
+
+  /* Control heights (element/*) — md & lg meet 44px touch target */
+  --element-sm: 36px; --element-md: 44px; --element-lg: 52px;
+
+  --radius-none: 0; --radius-sm: 2px; --radius-element: 4px; --radius-md: 4px;
+  --radius-container: 8px; --radius-lg: 8px; --radius-full: 999px; --radius-pill: 999px;
+
+  --duration-fast: 180ms; --duration-medium: 600ms; --duration-slow: 1400ms; --duration-kenburns: 24s;
+  --ease-standard: cubic-bezier(.2,0,0,1); --ease-out: cubic-bezier(.22,.61,.36,1); --ease-inout: cubic-bezier(.65,0,.35,1);
+  --shadow-low: 0 1px 2px rgba(0,0,0,.4); --shadow-high: 0 12px 40px rgba(0,0,0,.55);
 
   /* Layout */
   --max:    1120px;
   --read:   65ch;
 
-  /* Spacing (8pt scale) */
-  --sp-1:  0.5rem;   /*  8px */
-  --sp-2:  1rem;     /* 16px */
-  --sp-3:  1.5rem;   /* 24px */
-  --sp-4:  2rem;     /* 32px */
-  --sp-5:  2.5rem;   /* 40px */
-  --sp-6:  3rem;     /* 48px */
-  --sp-8:  4rem;     /* 64px */
-  --sp-10: 5rem;     /* 80px */
-  --sp-12: 6rem;     /* 96px */
-  --sp-16: 8rem;     /* 128px */
-
-  --radius: 4px;
+  /* ---- 3. LEGACY ALIASES (kept so existing rules keep working) ---- */
+  --font-display: var(--family-heading);
+  --font-headline: var(--family-heading);
+  --font-serif:   var(--family-body);
+  --font-mono:    var(--family-ui);
+  --font-ui:      var(--family-ui);
+  --sp-1: var(--spacing-2); --sp-2: var(--spacing-4); --sp-3: var(--spacing-6); --sp-4: var(--spacing-8);
+  --sp-5: var(--spacing-10); --sp-6: var(--spacing-12); --sp-8: var(--spacing-16); --sp-10: var(--spacing-20);
+  --sp-12: var(--spacing-24); --sp-16: var(--spacing-32);
+  --s-1: var(--spacing-1); --s-2: var(--spacing-2); --s-3: var(--spacing-3); --s-4: var(--spacing-4);
+  --s-6: var(--spacing-6); --s-8: var(--spacing-8); --s-12: var(--spacing-12); --s-16: var(--spacing-16);
+  --s-24: var(--spacing-24); --s-32: var(--spacing-32);
+  --fs-xs: var(--size-xs); --fs-sm: var(--size-sm); --fs-base: var(--size-base); --fs-md: var(--size-md);
+  --fs-lg: var(--size-lg); --fs-xl: var(--size-xl); --fs-2xl: var(--size-2xl); --fs-hero: var(--size-3xl);
+  --fw-regular: var(--weight-normal); --fw-medium: var(--weight-medium); --fw-semibold: var(--weight-semibold); --fw-bold: var(--weight-bold);
+  --radius: var(--radius-element);
+  --shadow-1: var(--shadow-low); --shadow-2: var(--shadow-high);
+  --dur-fast: var(--duration-fast); --dur-base: var(--duration-medium); --dur-slow: var(--duration-slow); --dur-kenburns: var(--duration-kenburns);
 }
 
 /* ============================================================
@@ -232,84 +293,66 @@ h3 {
 }
 
 /* ============================================================
-   BUTTONS
+   BUTTON — Astryx-style: variant × size × state
+   .btn + .btn--{primary|secondary|ghost|care} + .btn--{sm|md|lg}
+   states: :hover :active :focus-visible :disabled/[aria-disabled] [aria-busy=true]
 ============================================================ */
 .btn {
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.72rem 1.25rem;
-  border-radius: var(--radius);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  text-decoration: none;
-  line-height: 1.2;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+  --btn-bg: transparent; --btn-fg: var(--text-secondary); --btn-border: var(--border-default);
+  --btn-bg-hover: transparent; --btn-fg-hover: var(--text-primary); --btn-border-hover: var(--border-emphasized);
+  --btn-bg-press: transparent;
+  --btn-h: var(--element-md); --btn-px: var(--spacing-5); --btn-fs: var(--size-2xs);
+  position: relative;
+  min-height: var(--btn-h);
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--spacing-2);
+  padding: 0 var(--btn-px);
+  border-radius: var(--radius-element);
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg); color: var(--btn-fg);
+  font-family: var(--family-ui); font-size: var(--btn-fs); font-weight: var(--weight-medium);
+  text-transform: uppercase; letter-spacing: 0.12em; line-height: 1.2;
+  text-decoration: none; cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), transform var(--duration-fast) var(--ease-standard);
 }
+.btn:hover { background: var(--btn-bg-hover); color: var(--btn-fg-hover); border-color: var(--btn-border-hover); }
+.btn:active { background: var(--btn-bg-press); transform: translateY(1px); }
+.btn:focus-visible { outline: var(--focus-outline-width) solid var(--focus-outline-color); outline-offset: var(--focus-outline-offset); }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: .45; cursor: not-allowed; pointer-events: none; }
+.btn .icon { width: 20px; height: 20px; flex: none; }
+.btn--sm .icon { width: 16px; height: 16px; }
 
-/* Cardinal fill — primary action */
-.btn--primary {
-  background: var(--cardinal);
-  color: var(--bone);
-  border-color: var(--cardinal);
-}
-.btn--primary:hover {
-  background: #a02d3e;
-  color: var(--bone);
-  border-color: #a02d3e;
-}
+/* Variants */
+.btn--primary { --btn-bg: var(--accent-default); --btn-fg: var(--on-accent); --btn-border: var(--accent-default);
+  --btn-bg-hover: var(--accent-hover); --btn-fg-hover: var(--on-accent); --btn-border-hover: var(--accent-hover); --btn-bg-press: var(--accent-pressed); }
+.btn--secondary { --btn-fg: var(--text-primary); --btn-border: var(--border-accent);
+  --btn-bg-hover: rgba(224,102,118,.08); --btn-fg-hover: var(--text-primary); --btn-border-hover: var(--text-accent); --btn-bg-press: rgba(224,102,118,.16); }
+.btn--ghost { --btn-border: transparent; --btn-border-hover: transparent;
+  --btn-bg-hover: rgba(241,235,224,.06); --btn-bg-press: rgba(241,235,224,.1); }
+.btn--care { --btn-bg: var(--care-default); --btn-fg: var(--on-care); --btn-border: var(--care-default);
+  --btn-bg-hover: var(--care-hover); --btn-fg-hover: var(--on-care); --btn-border-hover: var(--care-hover); --btn-bg-press: var(--care-pressed);
+  font-weight: var(--weight-semibold); }
 
-/* Ghost / quiet — secondary */
-.btn--ghost {
-  background: transparent;
-  color: var(--stone);
-  border-color: var(--ash-line);
-}
-.btn--ghost:hover {
-  color: var(--bone);
-  border-color: var(--stone);
-}
+/* Sizes */
+.btn--sm { --btn-h: var(--element-sm); --btn-px: var(--spacing-3); --btn-fs: var(--size-3xs); }
+.btn--md { --btn-h: var(--element-md); }
+.btn--lg { --btn-h: var(--element-lg); --btn-px: var(--spacing-6); --btn-fs: var(--size-xs); }
 
-/* Ember accent — for 988 / care actions */
-.btn--ember {
-  background: var(--ember);
-  color: var(--void);
-  border-color: var(--ember);
-}
-.btn--ember:hover {
-  background: #e6a300;
-  color: var(--void);
-  border-color: #e6a300;
-}
+/* Icon-only: square, label lives in aria-label */
+.btn--icon { padding: 0; width: var(--btn-h); }
 
-/* Quiet/warning bar ghost */
-.btn--quiet {
-  background: transparent;
-  color: var(--stone);
-  border-color: var(--ash-line);
+/* Loading — label stays for layout, spinner overlays */
+.btn[aria-busy="true"] { cursor: progress; }
+.btn[aria-busy="true"] > * { visibility: hidden; }
+.btn[aria-busy="true"]::after {
+  content: ""; position: absolute; inset: 0; margin: auto; width: 16px; height: 16px;
+  border-radius: 50%; border: 1.5px solid currentColor; border-right-color: transparent;
+  animation: btn-spin .8s linear infinite;
 }
-.btn--quiet:hover {
-  color: var(--bone);
-  border-color: var(--stone);
-}
+@keyframes btn-spin { to { transform: rotate(360deg); } }
 
-/* Legacy .btn support for the SoundCloud trigger */
-.btn:not([class*="btn--"]) {
-  background: var(--cardinal);
-  color: var(--bone);
-  border-color: var(--cardinal);
-}
-.btn:not([class*="btn--"]):hover {
-  background: #a02d3e;
-  color: var(--bone);
-}
+/* Button group */
+.btn-group { display: flex; flex-wrap: wrap; gap: var(--spacing-3); align-items: center; }
 
 /* ============================================================
    SITE HEADER / NAV
@@ -1208,26 +1251,6 @@ html.js .reveal-group.is-visible > *:nth-child(4) { transition-delay: 240ms; opa
 .mt-4 { margin-top: var(--sp-4); }
 .mt-6 { margin-top: var(--sp-6); }
 
-/* ============================================================
-   DESIGN SYSTEM v2 — tokens (see docs/design-system.md)
-============================================================ */
-:root {
-  --font-headline: "Fraunces", "Source Serif 4", Georgia, serif;
-  --font-ui: "Inter", system-ui, sans-serif;
-  /* type scale (1.25 minor third-ish, fluid at top) */
-  --fs-xs: 0.75rem; --fs-sm: 0.875rem; --fs-base: 1.0625rem; --fs-md: 1.25rem;
-  --fs-lg: 1.5rem; --fs-xl: clamp(1.75rem, 3vw, 2.25rem);
-  --fs-2xl: clamp(2.25rem, 5vw, 3.5rem); --fs-hero: clamp(2.75rem, 8vw, 6rem);
-  --fw-regular: 400; --fw-medium: 500; --fw-semibold: 600; --fw-bold: 700;
-  /* 4px spacing scale */
-  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-6: 24px; --s-8: 32px;
-  --s-12: 48px; --s-16: 64px; --s-24: 96px; --s-32: 128px;
-  --radius-sm: 2px; --radius-md: 4px; --radius-lg: 8px; --radius-pill: 999px;
-  --shadow-1: 0 1px 2px rgba(0,0,0,.4);
-  --shadow-2: 0 12px 40px rgba(0,0,0,.55);
-  --dur-fast: 180ms; --dur-base: 600ms; --dur-slow: 1400ms; --dur-kenburns: 24s;
-  --ease-out: cubic-bezier(.22,.61,.36,1); --ease-inout: cubic-bezier(.65,0,.35,1);
-}
 h1, h2, .hero-title, .quote-card blockquote, .quote-card p:first-child { font-family: var(--font-headline); font-weight: var(--fw-regular); }
 figcaption { font-family: var(--font-ui); font-size: var(--fs-sm); line-height: 1.5; letter-spacing: .01em; color: var(--stone); border-left: 2px solid var(--cardinal); padding-left: var(--s-3); margin-top: var(--s-3); }
 .readable, .section p { max-width: var(--read); }
@@ -1263,10 +1286,13 @@ html.js .hero-inner > *:nth-child(4) { animation-delay: 1s; } html.js .hero-inne
 .crisis-note a { color: var(--ember); }
 .site-footer { padding-bottom: var(--s-16); }
 
-/* Listen indicator */
-.listen-indicator { display: inline-flex; align-items: center; gap: var(--s-2); margin: var(--s-3) 0; font-family: var(--font-ui); font-size: var(--fs-sm); color: var(--bone); background: transparent; border: 1px solid var(--cardinal-lit); border-radius: var(--radius-pill); padding: var(--s-2) var(--s-4); cursor: pointer; }
+/* Listen indicator — uses .btn .btn--secondary; adds pulse dot while waiting */
+.listen-indicator { margin: var(--spacing-3) 0; text-transform: none; letter-spacing: .02em; }
 .listen-indicator[hidden] { display: none; }
-.listen-indicator .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cardinal-lit); animation: pulse 1.6s var(--ease-inout) infinite; }
+.listen-indicator .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text-accent); animation: pulse 1.6s var(--ease-inout) infinite; }
+.listen-indicator[aria-pressed="true"] .dot { display: none; }
+.listen-indicator .icon-pause, .listen-indicator[aria-pressed="true"] .icon-play { display: none; }
+.listen-indicator[aria-pressed="true"] .icon-pause { display: block; }
 @keyframes pulse { 50% { opacity: .3; } }
 
 @media (max-width: 600px) { .crisis-note { left: var(--s-3); right: var(--s-3); text-align: center; border-radius: var(--radius-md); } .video-band { min-height: 40vh; } }
@@ -1274,9 +1300,19 @@ html.js .hero-inner > *:nth-child(4) { animation-delay: 1s; } html.js .hero-inne
   html.js .hero-inner > * { animation: none; opacity: 1; transform: none; }
   .kb img { transition: none; transform: none; }
   .listen-indicator .dot { animation: none; }
+  .btn[aria-busy="true"]::after { animation-duration: 2.4s; }
+  .btn:active { transform: none; }
 }
 
 /* Chapter label spans the full grid row so the two columns stay paired */
 .feature-grid > .chapter-num { grid-column: 1 / -1; margin-bottom: 0; }
 .feature-grid { align-items: start; }
 @media (min-width: 900px) { .feature-grid > .audio-card { position: sticky; top: calc(64px + var(--s-4)); } }
+
+/* Type pairing v3 — Instrument Serif display / Newsreader body / Plex Mono record labels */
+h1, h2, h3, .hero-title, .quote-card blockquote, .quote-card p:first-child { font-family: var(--family-heading); font-weight: var(--weight-normal); letter-spacing: -0.01em; }
+h1 { line-height: 0.95; }
+body, p { font-optical-sizing: auto; }
+.signature-quote, .signature-quote p { font-family: var(--family-heading); font-weight: var(--weight-normal); font-style: normal; font-size: clamp(2.6rem, 6.5vw, 5.2rem); line-height: 1.04; letter-spacing: -0.01em; }
+.signature-quote .line-two { font-style: italic; }
+.quote-card blockquote p { font-family: var(--family-heading); font-style: normal; font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.25; }

@@ -15,11 +15,20 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=2">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap">
+  <link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body>
   <div class="progress" aria-hidden="true"></div>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-play" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 4.5v11l9-5.5z"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4.5v11M13 4.5v11"/></symbol>
+      <symbol id="i-external" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4h5v5M16 4l-7 7M14 11.5V15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h3.5"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 3.5h3l1.5 4-2 1.25a8.5 8.5 0 0 0 4.25 4.25L12.5 11l4 1.5v3a1.5 1.5 0 0 1-1.5 1.5A12.5 12.5 0 0 1 3 5a1.5 1.5 0 0 1 1.5-1.5z"/></symbol>
+      <symbol id="i-chevron-down" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7.5l5 5 5-5"/></symbol>
+    </defs>
+  </svg>
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <!-- ============================================================
@@ -29,8 +38,8 @@
     <div class="warning-inner">
       <p><strong>Content warning:</strong> This portfolio discusses suicide, death, self-harm, grief, and campus mental-health crisis.</p>
       <div class="warning-actions">
-        <a class="btn btn--quiet" href="#story">Scroll to the story</a>
-        <a class="btn btn--ember" href="tel:988">Call or text 988</a>
+        <a class="btn btn--ghost btn--sm" href="#story">Scroll to the story<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></a>
+        <a class="btn btn--care btn--sm" href="tel:988"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call or text 988</a>
       </div>
     </div>
   </div>
@@ -69,8 +78,8 @@
         <h1 id="page-title" class="hero-title">What the<br>institution<br>suppressed.</h1>
         <p class="hero-subhead">Three student deaths — including two suicides — shook SCU in fall 2021. Students were left grieving, unheard, and demanding answers while the university projected calm. This portfolio is the record they asked for.</p>
         <div class="hero-actions">
-          <a class="btn btn--primary" href="#story">Read the record</a>
-          <a class="btn btn--ghost" href="#resources">Find support resources</a>
+          <a class="btn btn--primary btn--lg" href="#story">Read the record<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></a>
+          <a class="btn btn--secondary btn--lg" href="#resources">Find support resources</a>
         </div>
         <p class="hero-credit mt-6">Photo: Students gathered at SCU to demand funding for Counseling and Psychological Services. Source credited in works cited to Mercury News.</p>
       </div>
@@ -189,7 +198,7 @@
           <div class="audio-frame" id="soundcloud-player">
             <iframe id="sc-iframe" title="SoundCloud audio story: COMM 3 Audio Story" scrolling="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1979866659&color=%23862633&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false"></iframe>
           </div>
-          <button class="listen-indicator" type="button" hidden data-listen><span class="dot" aria-hidden="true"></span>Listen — audio starts when you interact</button>
+          <button class="btn btn--secondary btn--md listen-indicator" type="button" hidden data-listen aria-pressed="false"><span class="dot" aria-hidden="true"></span><svg class="icon icon-play" aria-hidden="true" focusable="false"><use href="#i-play"/></svg><svg class="icon icon-pause" aria-hidden="true" focusable="false"><use href="#i-pause"/></svg><span data-listen-label>Listen — audio starts when you interact</span></button>
           <p class="small mt-3"><a href="https://soundcloud.com/carlos-ceja-963191952/comm-3-audio-story" target="_blank" rel="noopener noreferrer">Open the audio story on SoundCloud</a></p>
 
           <details>
@@ -284,7 +293,7 @@
         <div class="artist-statement reveal mt-6">
           <p class="kicker">Artist statement</p>
           <p>In this visual piece, we intend to represent the impact of these deaths through the scenes where they had impact or occurred — allowing our audience to imagine and reflect on these events. As SCU students creating this story, we empathize with the struggles these Broncos faced. We hope to represent this story thoughtfully through the eyes of fellow Broncos, for Broncos.</p>
-          <p class="mt-3"><a class="btn btn--ghost" href="images/Santa%20Clara%20Suicides%20-%20Visual%20Story%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="View the full visual story PDF (opens in a new tab)">View the full visual story PDF</a></p>
+          <p class="mt-3"><a class="btn btn--secondary btn--md" href="images/Santa%20Clara%20Suicides%20-%20Visual%20Story%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="View the full visual story PDF (opens in a new tab)">View the full visual story PDF<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-external"/></svg></a></p>
         </div>
       </div>
     </section>
@@ -394,9 +403,19 @@
       s.onload = function () {
         if (!window.SC) return;
         var w = SC.Widget(iframe), playing = false, events = ['pointerdown','keydown','touchstart','scroll','click'];
-        function startOnInteract() { w.play(); cleanup(); }
+        var label = btn && btn.querySelector('[data-listen-label]');
+        function setState(state) {
+          if (!btn) return;
+          btn.removeAttribute('aria-busy');
+          if (state === 'loading') btn.setAttribute('aria-busy', 'true');
+          btn.setAttribute('aria-pressed', state === 'playing' ? 'true' : 'false');
+          if (label) label.textContent = state === 'playing' ? 'Pause' : (state === 'paused' ? 'Listen' : label.textContent);
+        }
+        function startOnInteract() { setState('loading'); w.play(); cleanup(); }
         function cleanup() { events.forEach(function (e) { window.removeEventListener(e, startOnInteract); }); }
-        w.bind(SC.Widget.Events.PLAY, function () { playing = true; if (btn) btn.hidden = true; cleanup(); });
+        w.bind(SC.Widget.Events.PLAY, function () { playing = true; if (btn) btn.hidden = false; setState('playing'); cleanup(); });
+        w.bind(SC.Widget.Events.PAUSE, function () { playing = false; setState('paused'); });
+        w.bind(SC.Widget.Events.FINISH, function () { playing = false; setState('paused'); });
         w.bind(SC.Widget.Events.READY, function () {
           w.play();
           setTimeout(function () {
@@ -405,7 +424,10 @@
             events.forEach(function (e) { window.addEventListener(e, startOnInteract, { once: true, passive: true }); });
           }, 1500);
         });
-        if (btn) btn.addEventListener('click', function () { w.play(); });
+        if (btn) btn.addEventListener('click', function (ev) {
+          ev.stopPropagation(); cleanup();
+          if (playing) { w.pause(); } else { setState('loading'); w.play(); }
+        });
       };
       s.onerror = function () { if (btn) btn.hidden = true; };
       document.head.appendChild(s);
