@@ -1316,3 +1316,6 @@ body, p { font-optical-sizing: auto; }
 .signature-quote, .signature-quote p { font-family: var(--family-heading); font-weight: var(--weight-normal); font-style: normal; font-size: clamp(2.6rem, 6.5vw, 5.2rem); line-height: 1.04; letter-spacing: -0.01em; }
 .signature-quote .line-two { font-style: italic; }
 .quote-card blockquote p { font-family: var(--family-heading); font-style: normal; font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.25; }
+
+/* Keep fixed crisis note from covering hero credit / last content on small screens */
+@media (max-width: 600px) { .hero { padding-bottom: calc(var(--s-8, 32px) + 56px); } body { padding-bottom: 72px; } }
