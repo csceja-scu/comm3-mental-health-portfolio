@@ -1275,3 +1275,8 @@ html.js .hero-inner > *:nth-child(4) { animation-delay: 1s; } html.js .hero-inne
   .kb img { transition: none; transform: none; }
   .listen-indicator .dot { animation: none; }
 }
+
+/* Chapter label spans the full grid row so the two columns stay paired */
+.feature-grid > .chapter-num { grid-column: 1 / -1; margin-bottom: 0; }
+.feature-grid { align-items: start; }
+@media (min-width: 900px) { .feature-grid > .audio-card { position: sticky; top: calc(64px + var(--s-4)); } }
