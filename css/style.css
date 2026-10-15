@@ -631,3 +631,8 @@ html.reveal-enabled .reveal-group:focus-within > * { opacity: 1; transform: none
   html.reveal-enabled .reveal, html.reveal-enabled .reveal-group > * { opacity: 1; transform: none; }
   .btn:active { transform: none; }
 }
+
+/* Transcript */
+.transcript { margin-top: var(--spacing-4, 16px); }
+.transcript .details-body { max-height: 60vh; overflow-y: auto; }
+.transcript .speaker { font-family: var(--family-ui); font-size: var(--size-xs, .8125rem); letter-spacing: .04em; text-transform: uppercase; color: var(--text-secondary, inherit); }
