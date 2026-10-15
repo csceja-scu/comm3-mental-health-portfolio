@@ -20,7 +20,7 @@ Tokens live at the top of `css/style.css` (`:root`) in three layers:
 | --text-care | ember on coal | 10.67:1 |
 | --border-default / -emphasized / -accent | ash-line / stone / cardinal-lit | decorative |
 
-Gold (`care`) is reserved for 988 and crisis actions. All pairs pass WCAG AA (4.5:1 or higher).
+Gold (`care`) is reserved for 988/crisis actions and the focus ring; ordinary editorial emphasis uses cardinal or neutral text. Token pairs above pass WCAG AA; checked rendered pairs after the r2 pass: stone on ash 6.95:1 (stat labels, captions), cardinal-lit on ash 5.36:1, ember on ash 10.1:1. Text over video/gradients and the third-party SoundCloud player are not certified by these tables — measure them in the browser.
 
 ## Type
 | Token | Family | Use |
@@ -54,9 +54,9 @@ Scale: `--size-3xs … --size-3xl`. Weights: `--weight-normal/medium/semibold/bo
   - `:active`: pressed color plus a 1px nudge.
   - `:focus-visible`: 2px gold outline.
   - `:disabled` / `[aria-disabled=true]`
-  - `[aria-busy=true]`: children hidden, spinner overlay.
+  - `[aria-busy=true]`: children set to `opacity: 0` (still in the accessibility tree), spinner overlay. Under reduced motion the spinner is a static ring.
 - `btn--icon` is a square icon-only button and needs an `aria-label`. `.btn-group` is a wrapping flex row with a 12px gap.
-- Listen indicator (`[data-listen]`): `btn btn--secondary btn--md`, driven by the SoundCloud Widget API. It shows `aria-busy` while the audio starts, then works as a Pause/Listen toggle (`aria-pressed`, with the play/pause icons swapping).
+- Listen indicator (`[data-listen]`): `btn btn--secondary btn--sm` in the fixed support pill (`.crisis-note .media-controls`), so Pause is always reachable. It is a command button (visible label switches Listen/Pause; state in `data-playing`, no `aria-pressed`).
 
 ## Icons
 An inline SVG sprite at the top of `<body>` holds `#i-play`, `#i-pause`, `#i-external`, `#i-phone`, and `#i-chevron-down`. Each uses a 20×20 viewBox, a 1.5px round stroke, and `currentColor`. Usage: `<svg class="icon" aria-hidden="true"><use href="#i-…"/></svg>`. The icons were drawn for this site; no Astryx icon paths were copied.
@@ -81,10 +81,24 @@ An inline SVG sprite at the top of `<body>` holds `#i-play`, `#i-pause`, `#i-ext
 
 Only the naming and the component model come from Astryx. No Astryx code was copied.
 
+## Audio behavior (truthful)
+- The SoundCloud iframe loads with `auto_play=false`. After the Widget API fires `READY`, the page makes **one** `play()` attempt.
+- The loading state (`aria-busy`) is bounded: it clears on `PLAY`, `PAUSE`, `FINISH`, or after 4 s.
+- If the browser blocks that attempt, a **one-time** first-gesture fallback is armed (`pointerdown`, `keydown`, `touchstart`; never `scroll`). Events from the Listen button are ignored, listeners are removed after the first attempt, and audio is never restarted after the reader pauses.
+- The audio depends on SoundCloud's iframe and Widget API; if the API fails to load the button stays hidden and the embedded player still works.
+- TODO: a complete transcript (WCAG 1.2.1) is still needed; the excerpts are labeled as selected excerpts.
+
 ## Motion & safe messaging
-- Ambient videos (muted, loop, playsinline) play only while on screen. With reduced motion, posters show instead.
-- Hero: protest.mp4. Before "Visual story": cowell.mp4. Before resources: candle.mp4.
-- Ken Burns (`.kb`) is used only on Cowell, Swig Hall, the Be Well sign, and the interview still. Never use it on the underpass, Caltrain, or any location that could relate to a method.
-- With reduced motion there is no hero or Ken Burns animation, no pulse dot, a slower spinner, and no press nudge.
-- The 988 + CAPS note is persistent (fixed bottom-right).
-- In the interview section, `.feature-grid > .chapter-num` spans the full grid row.
+- Ambient videos (muted, loop, playsinline) have no HTML `autoplay`; a controller plays them only while on screen, the tab is visible, reduced motion is off, and the reader hasn't paused motion. The hero uses `preload="metadata"`, bands `preload="none"`.
+- **Pause motion / Play motion** button in the support pill pauses every ambient video and freezes Ken Burns (`html.motion-paused`). The choice persists in `localStorage` (`motion`). It is hidden when the OS asks for reduced motion. Reduced-motion changes are picked up live.
+- Hero: protest.mp4. Before "Visual story": cowell.mp4. Before resources: candle.mp4. Videos are `aria-hidden`; band captions remain readable.
+- Ken Burns (`.kb`) is used only on Cowell, Swig Hall and the Be Well sign. Never on the interview composite (it must show the full frame), the underpass, Caltrain, or any location that could relate to a method. Photo-grid images have no hover/brightness effects.
+- The signature quote is an editorial passage (not full viewport, `clamp(1.75rem, 3.5vw, 2.75rem)`, both lines in primary text). No flame mark or flicker. All four statistics get equal treatment.
+- Safe-messaging compliance is **not** claimed: location-oriented copy, the PDF, audio and video frames still need editorial review.
+- With reduced motion: no ambient playback, Ken Burns, reveal, pulse dot, spinner rotation, or press nudge.
+- Reveal-on-scroll fails open: content is hidden only after the observer is created (`html.reveal-enabled`); focus inside a hidden block reveals it; already-visible blocks are never hidden.
+- The 988 + CAPS pill is fixed bottom-right. Its height and the header's are measured with `ResizeObserver` into `--support-h` / `--header-h`, which drive `scroll-padding` and body bottom padding.
+- In the interview section, `.feature-grid > .chapter-num` spans the full grid row; the audio card is sticky at ≥901px.
+
+## CSS order
+tokens → base/typography → layout → components → utilities → reveal → responsive → reduced motion.
